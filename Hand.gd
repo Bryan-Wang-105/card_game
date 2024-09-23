@@ -14,10 +14,15 @@ var HAND_WIDTH = .35
 
 var hide = 0
 var timer
-var num = 1
-var cur_index = 0
+var num = 1          #?
+var cur_index = 0    #?
 var selected_card = null
 var held_card = null
+
+func cleanup_hand():
+	selected_card = null
+	for child in get_children():
+		child.queue_free()
 
 func add_x_cards(x) -> void:
 	if !hide:

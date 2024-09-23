@@ -3,6 +3,7 @@ extends Node
 @onready var player: Node = $Player
 @onready var gui: Control = $GUI
 @onready var hand: Node3D = $"../CamNode/Head/Camera3D/Root/Hand"
+@onready var battle_manager: Node = $"../BattleManager"
 
 @export var actions_left = 5
 @export var hand_count = 0
@@ -44,6 +45,12 @@ func your_turn_setup():
 	actions_left = actions_left_base
 	player_turn = true
 	gui.update_action_count(str(actions_left))
+
+func toggle_gui():
+	gui.toggle_gui(battle_manager.in_battle)
+
+func cleanup_hand():
+	hand.cleanup_hand()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

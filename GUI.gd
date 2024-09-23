@@ -3,6 +3,7 @@ extends Control
 @onready var hand_count: Label = $handCount
 @onready var actions_left: Label = $actionCount
 @onready var player: Node = $".."
+@onready var player_manager: Node = $".."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,9 +13,9 @@ func _ready() -> void:
 	hand_count.visible = false
 	actions_left.visible = false
 
-func show_labels():
-	hand_count.visible = true
-	actions_left.visible = true
+func toggle_gui(inBattle):
+	hand_count.visible = inBattle
+	actions_left.visible = inBattle
 
 func update_hand_count(x) -> void:
 	hand_count.text = "In Hand: " + x

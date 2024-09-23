@@ -13,7 +13,6 @@ var state: gameState = gameState.OPEN_MAP
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var enemy_hp: MeshInstance3D = $Enemy/enemy_hp
 
-var available_nodes = []
 var level
 
 # Called when the node enters the scene tree for the first time.
@@ -23,15 +22,13 @@ func _ready() -> void:
 		make_disappear(battlefield)
 		enemy_hp.visible = false
 	
-	available_nodes.append(1)
-	
 	level = 1
 	pass
 
 func clicked_event(num):
 	if num == 0:
 		print("No real event clicked")
-	elif num in available_nodes:
+	elif num in map.get_available_nodes():
 		var event_collider = map.get_child(num)
 		
 		if "battle" in event_collider.get_child(0).get_groups():
@@ -45,14 +42,23 @@ func clicked_event(num):
 func call_battle_manager_start():
 	make_reappear(draw_pile)
 	make_reappear(battlefield)
-	GUI.show_labels()
 	animation_player.play("spawn_field")
 	battle_manager.start_battle()
-	
-	enemy_hp.visible = true
+	player_manager.toggle_gui()
 	update_enemy_health_ui()
 
+func cleanup_battlefield():
+	print("Clean up battlefield!")
+	enemy_hp.visible = false
+	#animation_player.play_backwards("spawn_field")
+	make_disappear(draw_pile)
+	make_disappear(battlefield)
+	player_manager.cleanup_hand()
+	map.restore_map()
+	player_manager.toggle_gui()
+
 func update_enemy_health_ui():
+	enemy_hp.visible = true
 	if enemy_manager.curr_enemy_health <= 0:
 		enemy_hp.mesh.text = "~ DEFEATED ~"
 	else:

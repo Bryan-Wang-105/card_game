@@ -9,10 +9,11 @@ extends Node
 @onready var battlefield: Node3D = $"../RoomManager/Battlefield"
 
 var enemy_obj
-var turn
+var in_battle = false
 
 func start_battle():
 	print("STARTING BATTLE NOW")
+	in_battle = true
 	# Shuffle player hand
 	deck_manager.shuffle()
 	
@@ -60,11 +61,14 @@ func enemy_turn():
 	pass
 
 func win_battle():
+	in_battle = false
 	print("BATTLE WON")
 	print("Waiting 1.5 seconds...")
 	await get_tree().create_timer(1.5).timeout
 	print("1.5 seconds passed")
-	
+	battlefield.clean_board()
+	player_manager.your_turn_setup()
+	room_manager.cleanup_battlefield()
 
 func reset_player_turn():
 	player_manager.your_turn_setup()

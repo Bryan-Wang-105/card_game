@@ -23,7 +23,7 @@ func spawn_enemy_deck():
 	curr_enemy_deck = []
 
 func spawn_enemy_health():
-	curr_enemy_health = 6
+	curr_enemy_health = 3
 
 func take_dmg(x):
 	curr_enemy_health -= x

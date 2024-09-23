@@ -34,6 +34,14 @@ func toggle_end_turn():
 	get_child(8).visible = player_manager.player_turn
 	get_child(9).visible = !player_manager.player_turn
 
+func clean_board():
+	enemyRow = [null, null, null, null]
+
+	for i in range(4):
+		if playerRow[i]:
+			playerRow[i] = null
+			get_child(i).get_child(1).queue_free()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
