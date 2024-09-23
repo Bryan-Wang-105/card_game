@@ -33,6 +33,9 @@ func _draw_card() -> void:
 		hand.add_x_cards(1)
 		hand.fan_cards()
 
+func update_hand_count():
+	gui.update_hand_count(str(hand_count))
+
 func decrease_action():
 	actions_left -= 1
 	gui.update_action_count(str(actions_left))

@@ -5,6 +5,7 @@ extends StaticBody3D
 enum CardState { NEUTRAL, HOVERED, SELECTED, PLACED }
 
 var state: CardState = CardState.NEUTRAL
+var cardObj 
 var original_position
 var original_rotation
 var original_transform

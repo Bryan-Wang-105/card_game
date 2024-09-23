@@ -6,10 +6,12 @@ var state: gameState = gameState.OPEN_MAP
 @onready var player_manager: Node = $"../PlayerManager"
 @onready var GUI: Node = $"../PlayerManager/GUI"
 @onready var battle_manager: Node = $"../BattleManager"
+@onready var enemy_manager: Node = $"../EnemyManager"
 @onready var draw_pile: StaticBody3D = $drawPile
 @onready var battlefield: StaticBody3D = $Battlefield
 @onready var map: StaticBody3D = $Map
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var enemy_hp: MeshInstance3D = $Enemy/enemy_hp
 
 var available_nodes = []
 var level
@@ -19,6 +21,7 @@ func _ready() -> void:
 	if state == 0:
 		make_disappear(draw_pile)
 		make_disappear(battlefield)
+		enemy_hp.visible = false
 	
 	available_nodes.append(1)
 	
@@ -45,6 +48,15 @@ func call_battle_manager_start():
 	GUI.show_labels()
 	animation_player.play("spawn_field")
 	battle_manager.start_battle()
+	
+	enemy_hp.visible = true
+	update_enemy_health_ui()
+
+func update_enemy_health_ui():
+	if enemy_manager.curr_enemy_health <= 0:
+		enemy_hp.mesh.text = "~ DEFEATED ~"
+	else:
+		enemy_hp.mesh.text = str(enemy_manager.curr_enemy_health) + " HP"
 
 func make_disappear(item):
 	item.set_collision_layer(0)

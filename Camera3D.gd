@@ -142,6 +142,8 @@ func _input(event: InputEvent) -> void:
 							hand.selected_card = null
 							hand.finish_placing()
 							player_manager.decrease_action()
+							player_manager.hand_count -= 1
+							player_manager.update_hand_count()
 						else:
 							hand.unselect(hand.selected_card.hand_pos)
 							hand.selected_card.set_state(0)
@@ -151,7 +153,7 @@ func _input(event: InputEvent) -> void:
 					elif !hand.selected_card and fieldSlot == 8 and player_manager.player_turn:
 						print("TURN ENDED")
 						player_manager.player_turn = false
-						battle_manager.enemy_turn()
+						battle_manager.end_turn()
 						pass
 				# Clicked card in Hand
 				elif raycast_obj.is_in_group("cardInHand"):

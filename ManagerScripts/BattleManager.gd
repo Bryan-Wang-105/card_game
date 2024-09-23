@@ -19,7 +19,36 @@ func start_battle():
 	# spawn enemy
 	enemy_manager.spawn_enemy()
 
+func end_turn():
+	# battle logic
+	var enemyRow = battlefield.enemyRow
+	var playerRow = battlefield.playerRow
+	var index = 0
+	
+	print("END TURN")
+	for slot in playerRow:
+		# If card is in our row at this slot
+		if slot:
+			print(slot)
+			# If there is an opposing enemy
+			if enemyRow[index]:
+				pass
+			# Free hit enemy
+			else:
+				print(enemy_manager.curr_enemy_health)
+				enemy_manager.take_dmg(slot.cardObj.attack)
+				print("DELT DMG " + str(slot.cardObj.attack) + " TO ENEMY")
+				print(enemy_manager.curr_enemy_health)
+				room_manager.update_enemy_health_ui()
+	
+	# If enemy is alive, change turn
+	if enemy_manager.is_alive():
+		enemy_turn()
+	else:
+		win_battle()
+
 func enemy_turn():
+	print("ENEMY STILL ALIVE")
 	battlefield.toggle_end_turn()
 	print("Waiting 3 seconds...")
 	await get_tree().create_timer(3.0).timeout
@@ -29,6 +58,13 @@ func enemy_turn():
 	print("PLAYER TURN NOW")
 	reset_player_turn()
 	pass
+
+func win_battle():
+	print("BATTLE WON")
+	print("Waiting 1.5 seconds...")
+	await get_tree().create_timer(1.5).timeout
+	print("1.5 seconds passed")
+	
 
 func reset_player_turn():
 	player_manager.your_turn_setup()

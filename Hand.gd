@@ -50,6 +50,7 @@ func add_x_cards(x) -> void:
 				atk_mesh.text = str(top_card.attack)
 				hlth_mesh.text = str(top_card.health)
 			
+			card.cardObj = top_card
 			card.hand_pos = len(get_children()) - 1
 			
 			num += 1

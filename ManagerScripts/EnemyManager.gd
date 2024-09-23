@@ -23,9 +23,9 @@ func spawn_enemy_deck():
 	curr_enemy_deck = []
 
 func spawn_enemy_health():
-	curr_enemy_health = 3
+	curr_enemy_health = 6
 
-func deal_enemy_dmg(x):
+func take_dmg(x):
 	curr_enemy_health -= x
 
 func is_alive():

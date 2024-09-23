@@ -4,23 +4,23 @@ extends StaticBody3D
 @onready var hand = $'../../CamNode/Head/Camera3D/Root/Hand'
 @onready var player_manager = $'../../PlayerManager'
 
-var row1
-var row2
+var enemyRow
+var playerRow
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("POSITIONS")
 	print(position)
-	row1 = [null, null, null, null]
-	row2 = [null, null, null, null]
+	enemyRow = [null, null, null, null]
+	playerRow = [null, null, null, null]
 	pass # Replace with function body.
 
 func check_slot(location):
-	return row2[location] == null
+	return playerRow[location] == null
 
 func place_card(card, location):
 	print(card, location)
-	row2[location] = card
+	playerRow[location] = card
 	var card_slot = get_child(location)
 	card.get_parent().remove_child(card)
 	card_slot.add_child(card)
