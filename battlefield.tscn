@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2ctxrbeltat2"]
+
+[ext_resource type="Script" path="res://battlefield.gd" id="1_vt8ng"]
+[ext_resource type="Material" uid="uid://cb2307q4de72i" path="res://3D_art/slot_text.tres" id="2_r5dwc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7vh4j"]
+size = Vector3(0.274475, 0.0229551, 0.334747)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7f7kw"]
+size = Vector3(0.3, 0.005, 0.35)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_22lbx"]
+points = PackedVector3Array(-0.200598, -0.0338976, -0.0280976, 0.195898, 0.0280548, 0.0276595, 0.195898, 0.0280548, -0.0280976, 0.195898, -0.0338976, 0.0276595, -0.181685, 0.0250997, 0.025, -0.200598, 0.0280548, -0.0280976, -0.200598, -0.0338976, 0.0276595, 0.195898, -0.0338976, -0.0280976)
+
+[sub_resource type="TextMesh" id="TextMesh_evema"]
+text = "END TURN"
+font_size = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmtui"]
+albedo_color = Color(0.32549, 0.25098, 0.0901961, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_2t04n"]
+text = "ENEMY TURN"
+font_size = 8
+
+[node name="Battlefield" type="StaticBody3D" groups=["cardSlot"]]
+collision_layer = 3
+script = ExtResource("1_vt8ng")
+
+[node name="slot" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.809357, 0.155467, 0.401138)
+shape = SubResource("BoxShape3D_7vh4j")
+
+[node name="mesh" type="MeshInstance3D" parent="slot"]
+mesh = SubResource("BoxMesh_7f7kw")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_r5dwc")
+
+[node name="slot2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262853, 0.155467, 0.401138)
+shape = SubResource("BoxShape3D_7vh4j")
+
+[node name="mesh" type="MeshInstance3D" parent="slot2"]
+mesh = SubResource("BoxMesh_7f7kw")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_r5dwc")
+
+[node name="slot3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289775, 0.155467, 0.401138)
+shape = SubResource("BoxShape3D_7vh4j")
+
+[node name="mesh" type="MeshInstance3D" parent="slot3"]
+mesh = SubResource("BoxMesh_7f7kw")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_r5dwc")
+
+[node name="slot4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.795222, 0.155467, 0.401138)
+shape = SubResource("BoxShape3D_7vh4j")
+
+[node name="mesh" type="MeshInstance3D" parent="slot4"]
+mesh = SubResource("BoxMesh_7f7kw")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_r5dwc")
+
+[node name="slot5" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.819955, 0.155467, -0.412027)
+shape = SubResource("BoxShape3D_7vh4j")
+
+[node name="mesh" type="MeshInstance3D" parent="slot5"]
+mesh = SubResource("BoxMesh_7f7kw")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_r5dwc")
+
+[node name="slot6" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262853, 0.155467, -0.412027)
+shape = SubResource("BoxShape3D_7vh4j")
+
+[node name="mesh" type="MeshInstance3D" parent="slot6"]
+mesh = SubResource("BoxMesh_7f7kw")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_r5dwc")
+
+[node name="slot7" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289775, 0.155467, -0.412027)
+shape = SubResource("BoxShape3D_7vh4j")
+
+[node name="mesh" type="MeshInstance3D" parent="slot7"]
+mesh = SubResource("BoxMesh_7f7kw")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_r5dwc")
+
+[node name="slot8" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.800344, 0.155467, -0.412027)
+shape = SubResource("BoxShape3D_7vh4j")
+
+[node name="mesh" type="MeshInstance3D" parent="slot8"]
+mesh = SubResource("BoxMesh_7f7kw")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_r5dwc")
+
+[node name="EndTurnCollider" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.682651, -0.338091, 0.647829, -0.0683002, 0.853132, 0.517206, -0.727546, -0.397318, 0.559299, -1.10414, 0.267522, 0.35716)
+shape = SubResource("ConvexPolygonShape3D_22lbx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EndTurnCollider"]
+transform = Transform3D(1, -2.98023e-08, 0, 0, 1, -4.47035e-08, -2.98023e-08, 0, 1, 0, 0, 0)
+mesh = SubResource("TextMesh_evema")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_rmtui")
+
+[node name="EnemyTurn" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999835, -0.00027493, 0.0181799, -0.009242, 0.853392, 0.521188, -0.0156578, -0.52127, 0.853248, -0.00809649, 0.17737, -0.020384)
+visible = false
+mesh = SubResource("TextMesh_2t04n")
+surface_material_override/0 = SubResource("StandardMaterial3D_rmtui")

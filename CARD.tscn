@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://blxlhvved2yvl"]
+
+[ext_resource type="Script" path="res://CARD.gd" id="1_64v7i"]
+[ext_resource type="Texture2D" uid="uid://pgbk08h2jrm1" path="res://cards/art/snake.png" id="2_4xo2k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f8ybg"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_u6v6m"]
+material = SubResource("StandardMaterial3D_f8ybg")
+text = "CARD
+"
+font_size = 3
+depth = 0.005
+
+[sub_resource type="TextMesh" id="TextMesh_12onq"]
+material = SubResource("StandardMaterial3D_f8ybg")
+text = "1
+"
+font_size = 5
+depth = 0.01
+
+[sub_resource type="BoxMesh" id="BoxMesh_k8802"]
+size = Vector3(0.2, 0.005, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86a1h"]
+albedo_color = Color(0.615686, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a1any"]
+size = Vector3(0.251968, 0.005, 0.347681)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ukgym"]
+size = Vector3(0.25, 0.005, 0.35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qft0j"]
+albedo_color = Color(0.164706, 0.427451, 1, 1)
+
+[node name="CARD" type="StaticBody3D" groups=["cardInHand"]]
+transform = Transform3D(1, 0, 0, 0, 0.270079, -0.962838, 0, 0.962838, 0.270079, 0, 0, 0)
+collision_layer = 2
+script = ExtResource("1_64v7i")
+
+[node name="name" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.000750989, 0.999999, 0, -0.999999, -0.000750989, 0.00628626, 0.00143168, -0.143122)
+mesh = SubResource("TextMesh_u6v6m")
+
+[node name="attack" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0233505, 0.999727, 0, -0.999727, -0.0233505, -0.0786158, 0.000265337, 0.132348)
+mesh = SubResource("TextMesh_12onq")
+
+[node name="health" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0233505, 0.999727, 0, -0.999727, -0.0233505, 0.0813383, 0.000265337, 0.132348)
+mesh = SubResource("TextMesh_12onq")
+
+[node name="desc" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0539043, 0.998545, 0, -0.998545, 0.0539043, -0.00629975, 0.00581337, 0.0586751)
+pixel_size = 0.001
+modulate = Color(0, 0, 0, 1)
+text = "IM GAY"
+font_size = 16
+outline_size = 0
+autowrap_mode = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00101083, 0.000385614)
+mesh = SubResource("BoxMesh_k8802")
+surface_material_override/0 = SubResource("StandardMaterial3D_86a1h")
+
+[node name="pic" type="Sprite3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, -0.000308559, -0.0199976, 0, 0.0199976, -0.000308559, 0, 0.00522296, -0.045292)
+flip_v = true
+texture = ExtResource("2_4xo2k")
+region_enabled = true
+region_rect = Rect2(1, 1, 700, 600)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999996, -4.17233e-07, 0, 4.17233e-07, 0.999996, 9.91821e-05, -1.74623e-10, -0.000769024)
+shape = SubResource("BoxShape3D_a1any")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ukgym")
+surface_material_override/0 = SubResource("StandardMaterial3D_qft0j")

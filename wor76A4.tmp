@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cm41xy1rrxyfm"]
+
+[ext_resource type="Script" path="res://PlayerManager.gd" id="1_a3tpb"]
+[ext_resource type="PackedScene" uid="uid://dg4ff03mwpngs" path="res://room.tscn" id="1_ribun"]
+[ext_resource type="Script" path="res://GUI.gd" id="2_6n8e6"]
+[ext_resource type="PackedScene" uid="uid://mmwdjwskqve8" path="res://head.tscn" id="2_b4ccd"]
+
+[node name="World" type="Node"]
+
+[node name="PlayerManager" type="Node" parent="."]
+script = ExtResource("1_a3tpb")
+
+[node name="Player" type="Node" parent="PlayerManager"]
+
+[node name="GUI" type="Control" parent="PlayerManager"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 647.0
+script = ExtResource("2_6n8e6")
+
+[node name="handCount" type="Label" parent="PlayerManager/GUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1096.0
+offset_top = 20.0
+offset_right = -22.0
+offset_bottom = -585.0
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Room" parent="." instance=ExtResource("1_ribun")]
+
+[node name="Head" parent="." instance=ExtResource("2_b4ccd")]

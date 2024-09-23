@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfa1ni76ide4n"]
+
+[ext_resource type="Script" path="res://Hand.gd" id="1_lna60"]
+
+[sub_resource type="Curve" id="Curve_p7gwp"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Root" type="Node3D"]
+
+[node name="Hand" type="Node3D" parent="."]
+script = ExtResource("1_lna60")
+curve = SubResource("Curve_p7gwp")
