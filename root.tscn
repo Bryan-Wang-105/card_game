@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfa1ni76ide4n"]
+
+[ext_resource type="Script" path="res://Hand.gd" id="1_53ykw"]
+
+[sub_resource type="Curve" id="Curve_qw0gu"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 2.0, 0, 1, Vector2(1, 1), 2.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_3i1od"]
+_data = [Vector2(0, 0.5), 0.0, 0.0889374, 0, 1, Vector2(0.136842, 0.51217), 0.0, 0.0, 0, 0, Vector2(0.265789, 0.545132), 0.0, 0.0, 0, 0, Vector2(0.371053, 0.650608), 0.0, 0.0, 0, 0, Vector2(0.510526, 0.76927), 0.0, 0.0, 0, 0, Vector2(0.6, 0.841785), 0.0, 0.0, 0, 0, Vector2(0.707895, 0.868154), 0.0, 0.0, 0, 0, Vector2(0.805263, 0.887931), 0.0, 0.0, 0, 0, Vector2(1, 0.85497), -0.169262, 0.0, 1, 0]
+point_count = 9
+
+[sub_resource type="Curve" id="Curve_fo83e"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 0.0, 0, 0, Vector2(0.502907, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_qnavf"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, -2.0, 0, 1, Vector2(1, -1), -2.0, 0.0, 1, 0]
+point_count = 2
+
+[node name="Root" type="Node3D"]
+
+[node name="Hand" type="Node3D" parent="."]
+script = ExtResource("1_53ykw")
+curve = SubResource("Curve_qw0gu")
+offsetCurve = SubResource("Curve_3i1od")
+heightCurve = SubResource("Curve_fo83e")
+angleCurve = SubResource("Curve_qnavf")
