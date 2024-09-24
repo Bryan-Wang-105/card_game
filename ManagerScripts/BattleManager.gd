@@ -19,6 +19,9 @@ func start_battle():
 	
 	# spawn enemy
 	enemy_manager.spawn_enemy()
+	
+	# Populate the battlefield
+	battlefield.populate_enemies()
 
 func end_turn():
 	# battle logic
@@ -27,20 +30,31 @@ func end_turn():
 	var index = 0
 	
 	print("END TURN")
+	print("ENEMY")
+	print(enemyRow)
+	print("PLAYER")
+	print(playerRow)
 	for slot in playerRow:
 		# If card is in our row at this slot
 		if slot:
 			print(slot)
 			# If there is an opposing enemy
 			if enemyRow[index]:
-				pass
+				print("ENEMY OPPOSING CARD")
+				var opp_card = enemyRow[index]
+				
+				battlefield.attack_enemy_card(index, slot.attack_curr)
+				print(opp_card.health_base)
+
 			# Free hit enemy
 			else:
 				print(enemy_manager.curr_enemy_health)
-				enemy_manager.take_dmg(slot.cardObj.attack)
-				print("DELT DMG " + str(slot.cardObj.attack) + " TO ENEMY")
+				enemy_manager.take_dmg(slot.attack_curr)
+				print("DELT DMG " + str(slot.attack_curr) + " TO ENEMY")
 				print(enemy_manager.curr_enemy_health)
 				room_manager.update_enemy_health_ui()
+		
+		index += 1
 	
 	# If enemy is alive, change turn
 	if enemy_manager.is_alive():
@@ -48,17 +62,45 @@ func end_turn():
 	else:
 		win_battle()
 
+
 func enemy_turn():
 	print("ENEMY STILL ALIVE")
-	battlefield.toggle_end_turn()
-	print("Waiting 3 seconds...")
-	await get_tree().create_timer(3.0).timeout
-	print("3 seconds passed")
-	print("ENEMY ATTACKS AND DOES NOTHING")
-	print("END ENEMY TURN")
-	print("PLAYER TURN NOW")
-	reset_player_turn()
-	pass
+	# battle logic
+	var enemyRow = battlefield.enemyRow
+	var playerRow = battlefield.playerRow
+	var index = 0
+
+	print("ENEMY")
+	print(enemyRow)
+	print("PLAYER")
+	print(playerRow)
+	for slot in enemyRow:
+		# If card is in our row at this slot (object)
+		if slot:
+			print(slot)
+			# If there is a player card opposing
+			if playerRow[index]:
+				print("PLAYER CARD OPPOSING")
+				var player_card = playerRow[index]
+				
+				battlefield.attack_player_card(index, slot.attack_curr)
+				print(player_card.health_base)
+
+			# Free hit player
+			else:
+				player_manager.take_damage(slot.attack_curr)
+				print("DELT DMG " + str(slot.attack_curr) + " TO PLAYER")
+				print(player_manager.health)
+				#player_manager.update_enemy_health_ui()
+		
+		index += 1
+	
+	# If enemy is alive, change turn
+	if player_manager.is_alive():
+		reset_player_turn()
+	else:
+		pass
+		#lose_battle()
 
 func win_battle():
 	in_battle = false
@@ -77,7 +119,3 @@ func reset_player_turn():
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

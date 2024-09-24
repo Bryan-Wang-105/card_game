@@ -6,8 +6,10 @@ func _init():
 	card_unlock = "Poison targeted creature. Poisoned creatures take 1 dmg at EOT"
 	art_path = "res://cards/art/snake.png" 
 	perk_path #= "res://Perks/" + rarity.to_lower() + "/" + perk_name + ".gd"
-	health = 2
-	attack = 3
+	health_base = 2
+	attack_base = 1#3
+	health_curr = 2
+	attack_curr = 1#3
 	status = []
 
 

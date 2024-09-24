@@ -6,8 +6,10 @@ func _init():
 	card_unlock = "Entraps 1 creature into its web. Entrapped cards cannot interact for 1 turn"
 	art_path = "res://cards/art/spider.png" 
 	perk_path #= "res://Perks/" + rarity.to_lower() + "/" + perk_name + ".gd"
-	health = 1
-	attack = 2
+	health_base = 1
+	attack_base = 1#2
+	health_curr = 1
+	attack_curr = 1#2
 	status = []
 
 

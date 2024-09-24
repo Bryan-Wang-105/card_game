@@ -9,6 +9,7 @@ extends Node
 @export var hand_count = 0
 @export var actions_left_base = 5
 @export var health = 10
+@export var health_base = 10
 @export var player_turn = true
 
 # Called when the node enters the scene tree for the first time.
@@ -51,6 +52,12 @@ func toggle_gui():
 
 func cleanup_hand():
 	hand.cleanup_hand()
+
+func is_alive():
+	return health > 0
+
+func take_damage(x):
+	health -= x
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

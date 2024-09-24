@@ -6,8 +6,10 @@ func _init():
 	card_unlock = "Enter the boneyard. Feast on cards that have perished this match to regain health"
 	art_path = "res://cards/art/vulture.png"
 	perk_path #= "res://Perks/" + rarity.to_lower() + "/" + perk_name + ".gd"
-	health = 3
-	attack = 2
+	health_base = 3
+	attack_base = 1#2
+	health_curr = 3
+	attack_curr = 1#2
 	status = []
 
 
