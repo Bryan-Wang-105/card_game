@@ -17,7 +17,7 @@ func start_battle():
 	# Shuffle player hand
 	deck_manager.shuffle()
 	
-	# spawn enemy
+	# Spawn enemy
 	enemy_manager.spawn_enemy()
 	
 	# Populate the battlefield
@@ -109,8 +109,9 @@ func win_battle():
 	await get_tree().create_timer(1.5).timeout
 	print("1.5 seconds passed")
 	battlefield.clean_board()
-	player_manager.your_turn_setup()
+	player_manager.clean_GUI()
 	room_manager.cleanup_battlefield()
+	deck_manager.reset_deck()
 
 func reset_player_turn():
 	player_manager.your_turn_setup()

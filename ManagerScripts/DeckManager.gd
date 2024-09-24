@@ -15,7 +15,14 @@ func shuffle():
 	cards.shuffle()
 
 func get_top_card():
-	return cards[top_index]
+	if top_index >= 0:
+		return cards[top_index]
+	else:
+		return null
+
+func reset_deck():
+	top_index = len(cards) - 1
+	shuffle()
 
 func next_card():
 	top_index -= 1

@@ -33,3 +33,4 @@ EPIC LIST:
 BUG SYSTEM:
 	1) Fix Card Fanning Distance
 	2) Hiding Cards while ending battle causes glitch with drawing cards next event
+	3) Draw Card system needs to be fixed so if DECK is exhausted, can't draw anymore

@@ -27,38 +27,42 @@ func cleanup_hand():
 func add_x_cards(x) -> void:
 	if !hide:
 		for _x in x:
-			var top_card = deck_manager.get_top_card().new()
-			deck_manager.next_card()
-			var card = CARD.instantiate()
+			var top_card = deck_manager.get_top_card()
 			
-			add_child(card) 
+			if top_card:
+				top_card = top_card.new()
 			
-			var name_mesh = card.get_child(0)
-			var label = card.get_child(3)
-			var sprite3d = card.get_child(5)
-			var atk_mesh = card.get_child(1)
-			var hlth_mesh = card.get_child(2)
-			
-			name_mesh.mesh = name_mesh.mesh.duplicate()
-			atk_mesh.mesh = atk_mesh.mesh.duplicate()
-			hlth_mesh.mesh = hlth_mesh.mesh.duplicate()
-			
-			label.text = top_card.card_description
-			sprite3d.texture = load(top_card.art_path)
-			
-			name_mesh = name_mesh.mesh as TextMesh
-			atk_mesh = atk_mesh.mesh as TextMesh
-			hlth_mesh = hlth_mesh.mesh as TextMesh
-			
-			if name_mesh:
-				name_mesh.text = top_card.card_name
-				atk_mesh.text = str(top_card.attack_base)
-				hlth_mesh.text = str(top_card.health_base)
-			
-			card.cardObj = top_card
-			card.hand_pos = len(get_children()) - 1
-			
-			num += 1
+				deck_manager.next_card()
+				var card = CARD.instantiate()
+				
+				add_child(card) 
+				
+				var name_mesh = card.get_child(0)
+				var label = card.get_child(3)
+				var sprite3d = card.get_child(5)
+				var atk_mesh = card.get_child(1)
+				var hlth_mesh = card.get_child(2)
+				
+				name_mesh.mesh = name_mesh.mesh.duplicate()
+				atk_mesh.mesh = atk_mesh.mesh.duplicate()
+				hlth_mesh.mesh = hlth_mesh.mesh.duplicate()
+				
+				label.text = top_card.card_description
+				sprite3d.texture = load(top_card.art_path)
+				
+				name_mesh = name_mesh.mesh as TextMesh
+				atk_mesh = atk_mesh.mesh as TextMesh
+				hlth_mesh = hlth_mesh.mesh as TextMesh
+				
+				if name_mesh:
+					name_mesh.text = top_card.card_name
+					atk_mesh.text = str(top_card.attack_base)
+					hlth_mesh.text = str(top_card.health_base)
+				
+				card.cardObj = top_card
+				card.hand_pos = len(get_children()) - 1
+				
+				num += 1
 
 func fan_cards() -> void:
 	var offset = .007

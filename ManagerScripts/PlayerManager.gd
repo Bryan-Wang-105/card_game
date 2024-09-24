@@ -28,7 +28,7 @@ func has_actions_left() -> bool:
 func _draw_card() -> void:
 	if !hand.hide and has_actions_left():
 		hand_count += 1
-		gui.update_hand_count(str(hand_count))
+		gui.update_hand_count()
 		
 		decrease_action()
 		
@@ -36,16 +36,25 @@ func _draw_card() -> void:
 		hand.fan_cards()
 
 func update_hand_count():
-	gui.update_hand_count(str(hand_count))
+	gui.update_hand_count()
 
 func decrease_action():
 	actions_left -= 1
-	gui.update_action_count(str(actions_left))
+	gui.update_action_count()
 
 func your_turn_setup():
 	actions_left = actions_left_base
 	player_turn = true
-	gui.update_action_count(str(actions_left))
+	gui.update_action_count()
+
+func clean_GUI():
+	actions_left = actions_left_base
+	player_turn = true
+	health = health_base
+	hand_count = 0
+	gui.update_action_count()
+	gui.update_hand_count()
+	gui.update_health()
 
 func toggle_gui():
 	gui.toggle_gui(battle_manager.in_battle)
@@ -58,6 +67,7 @@ func is_alive():
 
 func take_damage(x):
 	health -= x
+	gui.update_health()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
