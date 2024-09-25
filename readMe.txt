@@ -40,6 +40,7 @@ BUG SYSTEM:
 	3) Draw Card system needs to be fixed so if DECK is exhausted, can't draw anymore
 	4) Sometimes mouse doubleclicks and it's annoying
 	5) Sometimes spawns 4 cards when it should only spawn 2?
+	6) First Battle works perfect / next 2 insta kill is on for some reason?
 	
 FOR TOMORROW:
 	1) Work on having enemy cycle in new cards after initial placement cards are beaten

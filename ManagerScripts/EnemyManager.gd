@@ -23,15 +23,18 @@ func spawn_enemy():
 
 func spawn_enemy_deck():
 	var card_list = get_all_files_in_directory(card_library)
+	curr_enemy_deck = []
 	print(card_list)
 	if room_manager.level == 1:
-		var lvl1_deck_size = 4
+		var lvl1_deck_size = 2
 		for i in range(lvl1_deck_size):
 			var enemy_card_to_add = card_list[randi_range(0, len(card_list)-1)]
 			curr_enemy_deck.append(load(enemy_card_to_add).new())
 		top_card_index = lvl1_deck_size - 1
 	else:
 		curr_enemy_deck = []
+	print("ENEMY DECK")
+	print(curr_enemy_deck)
 
 func spawn_enemy_health():
 	if room_manager.level == 1:
@@ -40,12 +43,18 @@ func spawn_enemy_health():
 		curr_enemy_health = 3
 
 func get_next_in_deck():
-	if top_card_index >= 0:
+	if has_cards():
 		top_card_index -= 1
 		return curr_enemy_deck[top_card_index + 1]
+	else:
+		return null
 
 func take_dmg(x):
 	curr_enemy_health -= x
+
+func has_cards():
+	print(top_card_index)
+	return top_card_index >= 0
 
 func is_alive():
 	return curr_enemy_health > 0

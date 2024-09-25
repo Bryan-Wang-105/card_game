@@ -21,7 +21,7 @@ func start_battle():
 	enemy_manager.spawn_enemy()
 	
 	# Populate the battlefield
-	battlefield.populate_enemies()
+	battlefield.populate_initial_enemies()
 
 func end_turn():
 	# battle logic
@@ -97,8 +97,10 @@ func enemy_turn():
 	
 	# If enemy is alive, change turn
 	if player_manager.is_alive():
+		battlefield.next_wave()
 		reset_player_turn()
 	else:
+		print("LOST BATTLE")
 		pass
 		#lose_battle()
 

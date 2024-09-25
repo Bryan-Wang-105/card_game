@@ -36,9 +36,11 @@ func place_card(card, location):
 	card.global_position.y += .005
 
 func toggle_end_turn():
-	get_child(8).disabled = !player_manager.player_turn
-	get_child(8).visible = player_manager.player_turn
-	get_child(9).visible = !player_manager.player_turn
+	# END TURN COLLIDER
+	get_child(12).disabled = !player_manager.player_turn
+	get_child(12).visible = player_manager.player_turn
+	# ENEMY TURN MESH
+	get_child(13).visible = !player_manager.player_turn
 
 func clean_board():
 	enemyBackRow = [null, null, null, null]
@@ -49,10 +51,9 @@ func clean_board():
 			playerRow[i] = null
 			get_child(i).get_child(1).queue_free()
 
-func populate_enemies():
+func populate_initial_enemies():
 	if room_manager.level == 1:
 		var lvl1_frontRow = 2
-		var lvl1_backRow = 2
 		for i in range(lvl1_frontRow):
 			var indx = randi_range(0,3)
 			while enemyRow[indx]:
@@ -61,23 +62,39 @@ func populate_enemies():
 			print(enemy_card)
 			enemyRow[indx] = enemy_card
 			enemy_card = create_3D_card(enemy_card)
-			set_card_on_slot(indx + 4, enemy_card)
+			set_card_on_slot(indx + 4, enemy_card, false)
 		
-		for i in range(lvl1_backRow):
-			var indx = randi_range(0,3)
-			while enemyRow[indx]:
-				indx = randi_range(0,3)
-			var enemy_card = enemy_manager.get_next_in_deck()
-			print(enemy_card)
-			enemyRow[indx] = enemy_card
-			enemy_card = create_3D_card(enemy_card)
-			set_card_on_slot(indx + 8, enemy_card)
+		populate_enemyBackRow(1)
 	else:
 		pass
 
-func set_card_on_slot(indx, enemy_card):
+func populate_enemyBackRow(lvl):
+	print("Populating backrow")
+	if lvl == 1:
+		for i in range(2):
+				var indx = randi_range(0,3)
+				while enemyBackRow[indx]:
+					indx = randi_range(0,3)
+				var enemy_card = enemy_manager.get_next_in_deck()
+				if enemy_card:
+					print(enemy_card)
+					enemyBackRow[indx] = enemy_card
+					enemy_card = create_3D_card(enemy_card)
+					set_card_on_slot(indx + 8, enemy_card, false)
+				else:
+					break
+
+# 3rd argument is true if card is being up to battle row
+func set_card_on_slot(indx, enemy_card, moveUp):
 	var slot = get_child(indx)
+	print(slot.get_children())
+	print(enemy_card)
+
+	if moveUp:
+		enemy_card.get_parent().remove_child(enemy_card)
+
 	slot.add_child(enemy_card)
+	print(slot.get_children())
 	var new_card = slot.get_child(1)
 	new_card.rotation_degrees.x = 0
 	new_card.position.y = .005
@@ -130,7 +147,11 @@ func update_3D_card(card_to_update, new_hp, new_atk):
 		hlth_mesh.text = str(new_hp)
 
 func attack_enemy_card(index, atk_amt):
+	print("ATTACKING ENEMY")
 	var curr_enemy = enemyRow[index]
+	
+	print(curr_enemy)
+	print(curr_enemy.health_curr)
 	curr_enemy.health_curr -= atk_amt
 	
 	var card_to_update = get_child(index+4).get_child(1)
@@ -150,6 +171,23 @@ func attack_player_card(index, atk_amt):
 	if player_card.health_curr <= 0:
 		print("KILLED PLAYER CARD")
 		playerRow[index] = null
+
+func next_wave():
+		# Move cards from enemyBackRow to enemyRow if there are null spots
+	for i in range(4):
+		if not enemyRow[i] and enemyBackRow[i]:  # Move enemy from back row to front row
+			enemyRow[i] = enemyBackRow[i]
+			enemyBackRow[i] = null
+
+			# Update 3D representation: Move the card from back row to front row
+			var card_to_move = get_child(i + 8).get_child(1)  # Back row starts from index 8
+			set_card_on_slot(i + 4, card_to_move, true)  # Front row starts from index 4
+
+	# Check if enemy still has cards in deck
+	if enemy_manager.has_cards():
+		populate_enemyBackRow(1)
+	else:
+		print("ENEMY OUT OF CARDS")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
