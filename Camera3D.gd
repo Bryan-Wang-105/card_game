@@ -132,6 +132,7 @@ func _input(event: InputEvent) -> void:
 				elif raycast_obj.is_in_group("cardSlot"):
 					var fieldSlot = raycast_result.shape
 					print("CLICKED ON BATTLEFIELD NODE:" + str(raycast_result.shape))
+					print(raycast_obj.get_children())
 					# Card slot clicked and Card Selected for play
 					if hand.selected_card and hand.selected_card.state == 2 and fieldSlot < 4 and player_manager.actions_left > 0:
 						if battlefield.check_slot(fieldSlot):
@@ -150,7 +151,7 @@ func _input(event: InputEvent) -> void:
 							hand.selected_card = null
 						pass
 					# END TURN clicked w/no cards and on your turn
-					elif !hand.selected_card and fieldSlot == 8 and player_manager.player_turn:
+					elif !hand.selected_card and raycast_obj.get_child(fieldSlot).name == "EndTurnCollider" and player_manager.player_turn:
 						print("TURN ENDED")
 						player_manager.player_turn = false
 						battle_manager.end_turn()

@@ -1,10 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2ctxrbeltat2"]
+[gd_scene load_steps=11 format=3 uid="uid://b2ctxrbeltat2"]
 
 [ext_resource type="Script" path="res://battlefield.gd" id="1_vt8ng"]
 [ext_resource type="Material" uid="uid://cb2307q4de72i" path="res://3D_art/slot_text.tres" id="2_r5dwc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7vh4j"]
 size = Vector3(0.274475, 0.0229551, 0.334747)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0all4"]
+size = Vector3(0.3, 0.005, 0.35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ayml4"]
+albedo_color = Color(0.0745098, 0.321569, 0.129412, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7f7kw"]
 size = Vector3(0.3, 0.005, 0.35)
@@ -32,30 +38,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.809357, 0.155467, 0.401138
 shape = SubResource("BoxShape3D_7vh4j")
 
 [node name="mesh" type="MeshInstance3D" parent="slot"]
-mesh = SubResource("BoxMesh_7f7kw")
+mesh = SubResource("BoxMesh_0all4")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_r5dwc")
+surface_material_override/0 = SubResource("StandardMaterial3D_ayml4")
 
-[node name="slot2" type="CollisionShape3D" parent="."]
+[node name="slot1" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262853, 0.155467, 0.401138)
 shape = SubResource("BoxShape3D_7vh4j")
 
-[node name="mesh" type="MeshInstance3D" parent="slot2"]
-mesh = SubResource("BoxMesh_7f7kw")
+[node name="mesh" type="MeshInstance3D" parent="slot1"]
+mesh = SubResource("BoxMesh_0all4")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_r5dwc")
+surface_material_override/0 = SubResource("StandardMaterial3D_ayml4")
 
-[node name="slot3" type="CollisionShape3D" parent="."]
+[node name="slot2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289775, 0.155467, 0.401138)
 shape = SubResource("BoxShape3D_7vh4j")
 
-[node name="mesh" type="MeshInstance3D" parent="slot3"]
-mesh = SubResource("BoxMesh_7f7kw")
+[node name="mesh" type="MeshInstance3D" parent="slot2"]
+mesh = SubResource("BoxMesh_0all4")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_r5dwc")
+surface_material_override/0 = SubResource("StandardMaterial3D_ayml4")
+
+[node name="slot3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.795222, 0.155467, 0.401138)
+shape = SubResource("BoxShape3D_7vh4j")
+
+[node name="mesh" type="MeshInstance3D" parent="slot3"]
+mesh = SubResource("BoxMesh_0all4")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_ayml4")
 
 [node name="slot4" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.795222, 0.155467, 0.401138)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.819955, 0.155467, -0.117343)
 shape = SubResource("BoxShape3D_7vh4j")
 
 [node name="mesh" type="MeshInstance3D" parent="slot4"]
@@ -64,7 +79,7 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_r5dwc")
 
 [node name="slot5" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.819955, 0.155467, -0.412027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262853, 0.155467, -0.117343)
 shape = SubResource("BoxShape3D_7vh4j")
 
 [node name="mesh" type="MeshInstance3D" parent="slot5"]
@@ -73,7 +88,7 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_r5dwc")
 
 [node name="slot6" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262853, 0.155467, -0.412027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289775, 0.155467, -0.117343)
 shape = SubResource("BoxShape3D_7vh4j")
 
 [node name="mesh" type="MeshInstance3D" parent="slot6"]
@@ -82,7 +97,7 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_r5dwc")
 
 [node name="slot7" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289775, 0.155467, -0.412027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.800344, 0.155467, -0.117343)
 shape = SubResource("BoxShape3D_7vh4j")
 
 [node name="mesh" type="MeshInstance3D" parent="slot7"]
@@ -91,7 +106,7 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_r5dwc")
 
 [node name="slot8" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.800344, 0.155467, -0.412027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.819955, 0.155467, -0.535595)
 shape = SubResource("BoxShape3D_7vh4j")
 
 [node name="mesh" type="MeshInstance3D" parent="slot8"]
@@ -99,7 +114,34 @@ mesh = SubResource("BoxMesh_7f7kw")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_r5dwc")
 
-[node name="EndTurnCollider" type="CollisionShape3D" parent="."]
+[node name="slot9" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262853, 0.155467, -0.535595)
+shape = SubResource("BoxShape3D_7vh4j")
+
+[node name="mesh" type="MeshInstance3D" parent="slot9"]
+mesh = SubResource("BoxMesh_7f7kw")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_r5dwc")
+
+[node name="slot10" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289775, 0.155467, -0.535595)
+shape = SubResource("BoxShape3D_7vh4j")
+
+[node name="mesh" type="MeshInstance3D" parent="slot10"]
+mesh = SubResource("BoxMesh_7f7kw")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_r5dwc")
+
+[node name="slot11" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.800344, 0.155467, -0.535595)
+shape = SubResource("BoxShape3D_7vh4j")
+
+[node name="mesh" type="MeshInstance3D" parent="slot11"]
+mesh = SubResource("BoxMesh_7f7kw")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_r5dwc")
+
+[node name="EndTurnCollider" type="CollisionShape3D" parent="." groups=["endTurn"]]
 transform = Transform3D(0.682651, -0.338091, 0.647829, -0.0683002, 0.853132, 0.517206, -0.727546, -0.397318, 0.559299, -1.10414, 0.267522, 0.35716)
 shape = SubResource("ConvexPolygonShape3D_22lbx")
 

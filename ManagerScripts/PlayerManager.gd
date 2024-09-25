@@ -55,6 +55,8 @@ func clean_GUI():
 	gui.update_action_count()
 	gui.update_hand_count()
 	gui.update_health()
+	if hand.hide:
+		hand.hide_hand()
 
 func toggle_gui():
 	gui.toggle_gui(battle_manager.in_battle)

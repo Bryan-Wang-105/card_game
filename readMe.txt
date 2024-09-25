@@ -6,11 +6,15 @@ Cards:
 	3 Viper
 		health - 2  attack - 3  POISON 
 
-Ideas:
+Card Ideas:
 	Grizzly/Dreadnought:  HIBERNATE
 	Wolf/Hound:           ENRAGE
 	Bat/Dreadwing:        PARANOIA
 	Hunter? -> Sacrifice to boost animals?
+	
+Features Ideas:
+	Coin toss at beginning of game to decide who goes first
+	
 
 EPIC LIST:
 	1) Make Menu
@@ -34,3 +38,8 @@ BUG SYSTEM:
 	1) Fix Card Fanning Distance
 	2) Hiding Cards while ending battle causes glitch with drawing cards next event
 	3) Draw Card system needs to be fixed so if DECK is exhausted, can't draw anymore
+	4) Sometimes mouse doubleclicks and it's annoying
+	5) Sometimes spawns 4 cards when it should only spawn 2?
+	
+FOR TOMORROW:
+	1) Work on having enemy cycle in new cards after initial placement cards are beaten

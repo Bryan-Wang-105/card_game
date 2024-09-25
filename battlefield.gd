@@ -7,6 +7,7 @@ extends StaticBody3D
 @onready var room_manager = $'../../RoomManager'
 
 const CARD = preload("res://CARD.tscn")
+var enemyBackRow
 var enemyRow
 var playerRow
 
@@ -14,6 +15,7 @@ var playerRow
 func _ready() -> void:
 	print("POSITIONS")
 	print(position)
+	enemyBackRow = [null, null, null, null]
 	enemyRow = [null, null, null, null]
 	playerRow = [null, null, null, null]
 	pass # Replace with function body.
@@ -39,6 +41,7 @@ func toggle_end_turn():
 	get_child(9).visible = !player_manager.player_turn
 
 func clean_board():
+	enemyBackRow = [null, null, null, null]
 	enemyRow = [null, null, null, null]
 
 	for i in range(4):
@@ -48,7 +51,9 @@ func clean_board():
 
 func populate_enemies():
 	if room_manager.level == 1:
-		for i in range(2):
+		var lvl1_frontRow = 2
+		var lvl1_backRow = 2
+		for i in range(lvl1_frontRow):
 			var indx = randi_range(0,3)
 			while enemyRow[indx]:
 				indx = randi_range(0,3)
@@ -57,6 +62,16 @@ func populate_enemies():
 			enemyRow[indx] = enemy_card
 			enemy_card = create_3D_card(enemy_card)
 			set_card_on_slot(indx + 4, enemy_card)
+		
+		for i in range(lvl1_backRow):
+			var indx = randi_range(0,3)
+			while enemyRow[indx]:
+				indx = randi_range(0,3)
+			var enemy_card = enemy_manager.get_next_in_deck()
+			print(enemy_card)
+			enemyRow[indx] = enemy_card
+			enemy_card = create_3D_card(enemy_card)
+			set_card_on_slot(indx + 8, enemy_card)
 	else:
 		pass
 
