@@ -55,6 +55,7 @@ func generate_nodes_and_paths():
 		var horizontal_offset = []
 		node_pos = start_node.get_child(layer_index)
 		horizontal_offset = generate_random_points(nodes_per_layer[layer_index])
+		horizontal_offset.sort()
 		# Generate nodes for each layer (store their unique IDs)
 		for node_index in range(nodes_per_layer[layer_index]):
 			percent = randi_range(0,1)
@@ -85,9 +86,9 @@ func generate_nodes_and_paths():
 
 	draw_connecting_node_lines()
 
-	#print("Nodes: ", nodes)
-	#print("\n")
-	#print("Paths: ", paths)
+	print("Nodes: ", nodes)
+	print("\n")
+	print("Paths: ", paths)
 	
 	available_nodes = nodes[0]
 
@@ -226,9 +227,14 @@ func create_line_between_nodes(node_a: Node3D, node_b: Node3D) -> void:
 	# Calculate the rotation around the Y axis
 	var direction = (pos_b - pos_a).normalized()
 	var rotation_y = direction.angle_to(Vector3.FORWARD)
+	var dir
+	if pos_a.x > pos_b.x:
+		dir = 1
+	else:
+		dir = -1
 
 	# Set the rotation of the mesh instance
-	mesh_instance.rotation_degrees.y = rotation_y * rad_to_deg(1)  # Convert to degrees
+	mesh_instance.rotation_degrees.y = rotation_y * rad_to_deg(1)  * dir # Convert to degrees
 	
 	# Add the MeshInstance3D to the current node
 	add_child(mesh_instance)
