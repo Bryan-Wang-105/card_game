@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bd7vo3klebdfh"]
 
-[ext_resource type="Script" path="res://map.gd" id="1_lus7j"]
-[ext_resource type="PackedScene" uid="uid://8svsqy8tlfqk" path="res://3D_art/CombatEvent/CombatEvent.tscn" id="2_lyc5i"]
-[ext_resource type="PackedScene" uid="uid://evrr3eu16wif" path="res://3D_art/ShopEvent/ShopEvent.tscn" id="3_atvfp"]
+[ext_resource type="Script" path="res://MapManager.gd" id="1_dya81"]
+[ext_resource type="PackedScene" uid="uid://8svsqy8tlfqk" path="res://3D_art/CombatEvent/CombatEvent.tscn" id="2_pawlb"]
+[ext_resource type="PackedScene" uid="uid://evrr3eu16wif" path="res://3D_art/ShopEvent/ShopEvent.tscn" id="3_4iwto"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_w7hrv"]
 data = PackedVector3Array(-1.4, 0.025, 0.9, 1.4, 0.025, 0.9, -1.4, -0.025, 0.9, 1.4, 0.025, 0.9, 1.4, -0.025, 0.9, -1.4, -0.025, 0.9, 1.4, 0.025, -0.9, -1.4, 0.025, -0.9, 1.4, -0.025, -0.9, -1.4, 0.025, -0.9, -1.4, -0.025, -0.9, 1.4, -0.025, -0.9, 1.4, 0.025, 0.9, 1.4, 0.025, -0.9, 1.4, -0.025, 0.9, 1.4, 0.025, -0.9, 1.4, -0.025, -0.9, 1.4, -0.025, 0.9, -1.4, 0.025, -0.9, -1.4, 0.025, 0.9, -1.4, -0.025, -0.9, -1.4, 0.025, 0.9, -1.4, -0.025, 0.9, -1.4, -0.025, -0.9, 1.4, 0.025, 0.9, -1.4, 0.025, 0.9, 1.4, 0.025, -0.9, -1.4, 0.025, 0.9, -1.4, 0.025, -0.9, 1.4, 0.025, -0.9, -1.4, -0.025, 0.9, 1.4, -0.025, 0.9, -1.4, -0.025, -0.9, 1.4, -0.025, 0.9, 1.4, -0.025, -0.9, -1.4, -0.025, -0.9)
@@ -15,7 +15,7 @@ albedo_color = Color(0.513726, 0.372549, 0.14902, 1)
 
 [node name="Map" type="StaticBody3D" groups=["map"]]
 collision_layer = 3
-script = ExtResource("1_lus7j")
+script = ExtResource("1_dya81")
 
 [node name="MapCollider" type="CollisionShape3D" parent="."]
 shape = SubResource("ConcavePolygonShape3D_w7hrv")
@@ -25,17 +25,39 @@ mesh = SubResource("BoxMesh_ni8si")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_7qnal")
 
-[node name="CombatEvent" parent="." instance=ExtResource("2_lyc5i")]
+[node name="CombatEvent" parent="." instance=ExtResource("2_pawlb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00177759, 0.101623, 0.3138)
+visible = false
 
-[node name="CombatEvent2" parent="." instance=ExtResource("2_lyc5i")]
+[node name="CombatEvent2" parent="." instance=ExtResource("2_pawlb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00177759, 0.10821, -0.0996839)
+visible = false
 
-[node name="CombatEvent3" parent="." instance=ExtResource("2_lyc5i")]
+[node name="CombatEvent3" parent="." instance=ExtResource("2_pawlb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00177759, 0.11035, -0.558691)
+visible = false
 
-[node name="ShopEvent" parent="." instance=ExtResource("3_atvfp")]
-transform = Transform3D(0.468007, 0, 0.883725, 0, 1, 0, -0.883725, 0, 0.468007, -0.548445, 0.117126, -0.0221092)
+[node name="ShopEvent" parent="." instance=ExtResource("3_4iwto")]
+transform = Transform3D(0.468007, 0, 0.883725, 0, 1, 0, -0.883725, 0, 0.468007, -0.548445, 0.140638, -0.0221092)
+visible = false
 
-[node name="ShopEvent2" parent="." instance=ExtResource("3_atvfp")]
-transform = Transform3D(0.626087, 0, -0.779753, 0, 1, 0, 0.779753, 0, 0.626087, 0.605931, 0.117126, -0.0221092)
+[node name="ShopEvent2" parent="." instance=ExtResource("3_4iwto")]
+transform = Transform3D(0.626087, 0, -0.779753, 0, 1, 0, 0.779753, 0, 0.626087, 0.605931, 0.140069, -0.0221092)
+visible = false
+
+[node name="Starting point" type="Node3D" parent="."]
+
+[node name="1" type="Node3D" parent="Starting point"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.560369)
+
+[node name="2" type="Node3D" parent="Starting point"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.330977)
+
+[node name="3" type="Node3D" parent="Starting point"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0323687)
+
+[node name="4" type="Node3D" parent="Starting point"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.328442)
+
+[node name="5" type="Node3D" parent="Starting point"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.711285)
