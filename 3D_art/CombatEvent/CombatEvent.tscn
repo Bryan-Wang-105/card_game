@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://cldihhf06mejh" path="res://3D_art/CombatEvent/CombatMesh.tscn" id="1_ldko5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8kd0p"]
-size = Vector3(0.213064, 0.178955, 0.130066)
+size = Vector3(0.107526, 0.0867615, 0.0710297)
 
 [node name="CombatEvent" type="CollisionShape3D" groups=["battle"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00177759, 0.0910032, -0.000145525)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00142682, 0.0423518, 0.00121789)
 shape = SubResource("BoxShape3D_8kd0p")
 
 [node name="Soldier" parent="." instance=ExtResource("1_ldko5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0225776, -0.00328207)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00650159, -0.00328207)

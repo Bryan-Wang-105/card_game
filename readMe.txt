@@ -22,7 +22,7 @@ Features Ideas:
 
 Lore Ideas:
 	Morality system for finishing enemies
-	
+	Chase your past run and if you hit that node, you can grab an item
 
 EPIC LIST:
 	1) Make Menu
