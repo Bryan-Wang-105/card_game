@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://8svsqy8tlfqk"]
+
+[ext_resource type="PackedScene" uid="uid://cldihhf06mejh" path="res://3D_art/CombatEvent/CombatMesh.tscn" id="1_ldko5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8kd0p"]
+size = Vector3(0.213064, 0.178955, 0.130066)
+
+[node name="CombatEvent" type="CollisionShape3D" groups=["battle"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00177759, 0.00177638, 0.0151672)
+shape = SubResource("BoxShape3D_8kd0p")
+
+[node name="Soldier" parent="." instance=ExtResource("1_ldko5")]

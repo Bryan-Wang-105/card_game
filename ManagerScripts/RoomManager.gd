@@ -30,10 +30,15 @@ func clicked_event(num):
 		print("No real event clicked")
 	elif num in map.get_available_nodes():
 		var event_collider = map.get_child(num)
+		print("EVENT COLLIDER IS")
+		print(event_collider)
 		
-		if "battle" in event_collider.get_child(0).get_groups():
+		if "battle" in event_collider.get_groups():
 			map.clear_map()
 			call_battle_manager_start()
+		if "shop" in event_collider.get_groups():
+			map.clear_map()
+			print("SHOP TIME")
 
 	else:
 		print("NOT AVAILABLE YET")

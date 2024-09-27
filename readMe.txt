@@ -12,8 +12,16 @@ Card Ideas:
 	Bat/Dreadwing:        PARANOIA
 	Hunter? -> Sacrifice to boost animals?
 	
+Card Ability Ideas:
+	1) Low dmg High Health card that inverts +-1 per turn
+	2) 
+
 Features Ideas:
 	Coin toss at beginning of game to decide who goes first
+	
+
+Lore Ideas:
+	Morality system for finishing enemies
 	
 
 EPIC LIST:
@@ -27,7 +35,7 @@ EPIC LIST:
 		3b) Shops?
 		3c) Biome choices
 		3d) Gambles
-		3e) 
+		3e) etc
 	3) Create Battle system
 		3a) Create battle loop that can be applied to ALL mob encounters alike
 		3b) Create dynamically scaling encounters/enemies in accordance to player ability
@@ -40,7 +48,6 @@ BUG SYSTEM:
 	3) Draw Card system needs to be fixed so if DECK is exhausted, can't draw anymore
 	4) Sometimes mouse doubleclicks and it's annoying
 	5) Sometimes spawns 4 cards when it should only spawn 2?
-	6) First Battle works perfect / next 2 insta kill is on for some reason?
 	
 FOR TOMORROW:
-	1) Work on having enemy cycle in new cards after initial placement cards are beaten
+	1) Work on "special" card abilities

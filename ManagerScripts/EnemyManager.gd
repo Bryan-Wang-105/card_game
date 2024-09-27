@@ -26,7 +26,7 @@ func spawn_enemy_deck():
 	curr_enemy_deck = []
 	print(card_list)
 	if room_manager.level == 1:
-		var lvl1_deck_size = 2
+		var lvl1_deck_size = 6
 		for i in range(lvl1_deck_size):
 			var enemy_card_to_add = card_list[randi_range(0, len(card_list)-1)]
 			curr_enemy_deck.append(load(enemy_card_to_add).new())

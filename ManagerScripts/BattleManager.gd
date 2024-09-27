@@ -69,7 +69,12 @@ func enemy_turn():
 	var enemyRow = battlefield.enemyRow
 	var playerRow = battlefield.playerRow
 	var index = 0
-
+	battlefield.toggle_end_turn()
+	print("ENEMY ATTACKING")
+	print("Waiting 1.5 seconds...")
+	await get_tree().create_timer(1.5).timeout
+	print("1.5 seconds passed")
+	
 	print("ENEMY")
 	print(enemyRow)
 	print("PLAYER")

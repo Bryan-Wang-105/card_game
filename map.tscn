@@ -1,7 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bd7vo3klebdfh"]
 
 [ext_resource type="Script" path="res://map.gd" id="1_lus7j"]
-[ext_resource type="PackedScene" uid="uid://cldihhf06mejh" path="res://3D_art/Soldier.tscn" id="2_dtdyg"]
+[ext_resource type="PackedScene" uid="uid://8svsqy8tlfqk" path="res://3D_art/CombatEvent/CombatEvent.tscn" id="2_lyc5i"]
+[ext_resource type="PackedScene" uid="uid://evrr3eu16wif" path="res://3D_art/ShopEvent/ShopEvent.tscn" id="3_atvfp"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_w7hrv"]
 data = PackedVector3Array(-1.4, 0.025, 0.9, 1.4, 0.025, 0.9, -1.4, -0.025, 0.9, 1.4, 0.025, 0.9, 1.4, -0.025, 0.9, -1.4, -0.025, 0.9, 1.4, 0.025, -0.9, -1.4, 0.025, -0.9, 1.4, -0.025, -0.9, -1.4, 0.025, -0.9, -1.4, -0.025, -0.9, 1.4, -0.025, -0.9, 1.4, 0.025, 0.9, 1.4, 0.025, -0.9, 1.4, -0.025, 0.9, 1.4, 0.025, -0.9, 1.4, -0.025, -0.9, 1.4, -0.025, 0.9, -1.4, 0.025, -0.9, -1.4, 0.025, 0.9, -1.4, -0.025, -0.9, -1.4, 0.025, 0.9, -1.4, -0.025, 0.9, -1.4, -0.025, -0.9, 1.4, 0.025, 0.9, -1.4, 0.025, 0.9, 1.4, 0.025, -0.9, -1.4, 0.025, 0.9, -1.4, 0.025, -0.9, 1.4, 0.025, -0.9, -1.4, -0.025, 0.9, 1.4, -0.025, 0.9, -1.4, -0.025, -0.9, 1.4, -0.025, 0.9, 1.4, -0.025, -0.9, -1.4, -0.025, -0.9)
@@ -11,9 +12,6 @@ size = Vector3(2.8, 0.05, 1.8)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qnal"]
 albedo_color = Color(0.513726, 0.372549, 0.14902, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_4a8fr"]
-size = Vector3(0.207558, 0.165771, 0.123322)
 
 [node name="Map" type="StaticBody3D" groups=["map"]]
 collision_layer = 3
@@ -27,25 +25,17 @@ mesh = SubResource("BoxMesh_ni8si")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_7qnal")
 
-[node name="event1Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.994681, 0.103001, 0, -0.103001, 0.994681, -0.00182724, 0.0960027, 0.382201)
-shape = SubResource("BoxShape3D_4a8fr")
+[node name="CombatEvent" parent="." instance=ExtResource("2_lyc5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00177759, 0.101623, 0.3138)
 
-[node name="Soldier" parent="event1Collider" instance=ExtResource("2_dtdyg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00182724, -0.00976546, -0.00169373)
+[node name="CombatEvent2" parent="." instance=ExtResource("2_lyc5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00177759, 0.10821, -0.0996839)
 
-[node name="event2Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.995144, 0.098434, 0, -0.098434, 0.995144, -0.00182724, 0.0960027, -0.161773)
-shape = SubResource("BoxShape3D_4a8fr")
+[node name="CombatEvent3" parent="." instance=ExtResource("2_lyc5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00177759, 0.11035, -0.558691)
 
-[node name="Soldier2" parent="event2Collider" instance=ExtResource("2_dtdyg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00182724, -0.00976546, -0.00246364)
-skeleton = NodePath("")
+[node name="ShopEvent" parent="." instance=ExtResource("3_atvfp")]
+transform = Transform3D(0.468007, 0, 0.883725, 0, 1, 0, -0.883725, 0, 0.468007, -0.548445, 0.117126, -0.0221092)
 
-[node name="event3Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, -0.00182724, 0.0960027, -0.67729)
-shape = SubResource("BoxShape3D_4a8fr")
-
-[node name="Soldier" parent="event3Collider" instance=ExtResource("2_dtdyg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00182724, -0.00976546, -0.0140297)
-skeleton = NodePath("")
+[node name="ShopEvent2" parent="." instance=ExtResource("3_atvfp")]
+transform = Transform3D(0.626087, 0, -0.779753, 0, 1, 0, 0.779753, 0, 0.626087, 0.605931, 0.117126, -0.0221092)

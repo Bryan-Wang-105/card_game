@@ -12,6 +12,8 @@ func _process(delta: float) -> void:
 	pass
 
 func get_available_nodes():
+	print("AVAILABLE NODES")
+	print(available_nodes)
 	return available_nodes
 
 func clear_map():

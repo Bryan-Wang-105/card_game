@@ -5,9 +5,9 @@ extends Node
 @onready var hand: Node3D = $"../CamNode/Head/Camera3D/Root/Hand"
 @onready var battle_manager: Node = $"../BattleManager"
 
-@export var actions_left = 5
+@export var actions_left = 6
 @export var hand_count = 0
-@export var actions_left_base = 5
+@export var actions_left_base = 6
 @export var health = 10
 @export var health_base = 10
 @export var player_turn = true
@@ -34,6 +34,8 @@ func _draw_card() -> void:
 		
 		hand.add_x_cards(1)
 		hand.fan_cards()
+	else:
+		print("OUT OF CARDS")
 
 func update_hand_count():
 	gui.update_hand_count()
