@@ -26,13 +26,14 @@ func _ready() -> void:
 	pass
 
 func clicked_event(num):
+	# Add 1 because initial collider is for MAP itself
+	var event_collider = map.get_child(num + 1)
+	print("EVENT COLLIDER IS")
+	print(event_collider)
+	
 	if num == 0:
 		print("No real event clicked")
-	elif num in map.get_available_nodes():
-		var event_collider = map.get_child(num)
-		print("EVENT COLLIDER IS")
-		print(event_collider)
-		
+	elif event_collider in map.get_available_nodes():
 		if "battle" in event_collider.get_groups():
 			map.clear_map()
 			call_battle_manager_start()

@@ -15,33 +15,12 @@ var paths := []  # Array to store paths (connections between nodes)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#place_events()
+	create_blueprint()
 	generate_nodes_and_paths()
 
-func place_events():
-	var scene_instance
-	var start_node = get_node("Starting point")
-	var node_pos
-	
-	for i in range(layers):
-		node_pos = start_node.get_child(i)
-		
-		if i % 2 == 0:
-			# Create an instance of the combat
-			scene_instance = toSpawnCombat.instantiate()
-		else:
-			# Create an instance of the shop
-			scene_instance = toSpawnShop.instantiate()
-
-		print(node_pos)
-		print(node_pos.position)
-		# Set the position of the new instance to the position of the specified node
-		scene_instance.position = node_pos.position
-		scene_instance.position.y = node_pos.position.y + .15
-
-		# Add the instance to the current scene
-		add_child(scene_instance)
-
+func create_blueprint():
+	for i in range(layers-1):
+		nodes_per_layer[i] = randi_range(2, 5)
 
 # Generates the nodes and paths as arrays
 func generate_nodes_and_paths():
@@ -86,11 +65,13 @@ func generate_nodes_and_paths():
 
 	draw_connecting_node_lines()
 
-	print("Nodes: ", nodes)
-	print("\n")
-	print("Paths: ", paths)
+	#print("Nodes: ", nodes)
+	#print("\n")
+	#print("Paths: ", paths)
 	
 	available_nodes = nodes[0]
+	print("CAN GO HERE")
+	print(available_nodes)
 
 func draw_connecting_node_lines():
 	for path in paths:
@@ -134,8 +115,6 @@ func is_path_exists(node_a, node_b) -> bool:
 	return false
 
 func get_available_nodes():
-	print("AVAILABLE NODES")
-	print(available_nodes)
 	return available_nodes
 
 func clear_map():
@@ -163,13 +142,12 @@ func restore_map():
 	update_available_nodes()
 
 func update_available_nodes():
-	available_nodes[0] += 1
+	available_nodes[0]
 	
 	
 func generate_random_points(num_points: int) -> Array:
 	# Validate the input to ensure it doesn't exceed 5 points
 	if num_points < 1 or num_points > 5:
-		print("Number of points must be between 1 and 5.")
 		return []
 
 	var points = []
@@ -199,9 +177,6 @@ func create_line_between_nodes(node_a: Node3D, node_b: Node3D) -> void:
 	# Get positions of the two nodes
 	var pos_a = node_a.global_position
 	var pos_b = node_b.global_position
-	print("Calculating 2 points")
-	print(pos_a)
-	print(pos_b)
 
 	# Calculate the distance between the nodes
 	var distance = pos_a.distance_to(pos_b)
@@ -209,15 +184,21 @@ func create_line_between_nodes(node_a: Node3D, node_b: Node3D) -> void:
 	# Calculate the midpoint
 	var midpoint = (pos_a + pos_b) / 2
 	midpoint.y = .021
-	print(midpoint)
 
 	# Create the BoxMesh
 	var box_mesh = BoxMesh.new()
-	box_mesh.size = Vector3(0.025, 0.01, distance)  # Set the dimensions, z is the distance
+	box_mesh.size = Vector3(0.015, 0.01, distance)  # Set the dimensions, z is the distance
 	
 	# Create a MeshInstance3D to hold the mesh
 	var mesh_instance = MeshInstance3D.new()
 	mesh_instance.mesh = box_mesh
+
+	# Create a black material
+	var material = StandardMaterial3D.new()
+	material.albedo_color = Color(0, 0, 0)  # Set color to black
+
+	# Assign the material to the MeshInstance3D
+	mesh_instance.material_override = material
 
 	# Set the position to the midpoint
 	mesh_instance.global_position = midpoint
@@ -236,4 +217,13 @@ func create_line_between_nodes(node_a: Node3D, node_b: Node3D) -> void:
 	
 	# Add the MeshInstance3D to the current node
 	add_child(mesh_instance)
-
+	
+	# Save its exact orientation
+	var orientation = mesh_instance.global_transform
+	
+	# Remove its parent and give it new parent
+	mesh_instance.get_parent().remove_child(mesh_instance)
+	node_a.add_child(mesh_instance)
+	
+	# Restore it's orientation
+	mesh_instance.global_transform = orientation
