@@ -50,17 +50,15 @@ func generate_nodes_and_paths():
 	var start_node = get_node("Starting point")
 	var node_pos
 	
-	print("A")
 	for layer_index in range(layers):
-		print(layer_index)
 		var current_layer_nodes := []
 		var horizontal_offset = []
 		node_pos = start_node.get_child(layer_index)
 		horizontal_offset = generate_random_points(nodes_per_layer[layer_index])
-		print("B")
 		# Generate nodes for each layer (store their unique IDs)
 		for node_index in range(nodes_per_layer[layer_index]):
 			percent = randi_range(0,1)
+			
 			if percent == 0:
 				scene_instance = toSpawnCombat.instantiate()
 			else:
@@ -69,26 +67,37 @@ func generate_nodes_and_paths():
 			# Set the position of the new instance to the position of the specified node
 			scene_instance.position = node_pos.position
 			scene_instance.position.y = node_pos.position.y + .15
-
 			if len(horizontal_offset) > 1:
 				scene_instance.position.x = node_pos.position.x + horizontal_offset[node_index]
 
-			current_layer_nodes.append("Layer %d / Node %d" % [layer_index, node_index])
-
+			#current_layer_nodes.append("Layer %d / Node %d" % [layer_index, node_index])
+			current_layer_nodes.append(scene_instance)
+			
 			# Add the instance to the current scene
 			add_child(scene_instance)
 			
-			nodes.append(current_layer_nodes)
+		nodes.append(current_layer_nodes)
 
-			# Connect the nodes from the previous layer to the current layer
-			if layer_index > 0:
-				connect_nodes_without_intersections(nodes[layer_index - 1], current_layer_nodes)
+		# Connect the nodes from the previous layer to the current layer
+		if layer_index > 0:
+			connect_nodes_without_intersections(nodes[layer_index - 1], current_layer_nodes)
+		
 
-	print("Nodes: ", nodes)
-	print("Paths: ", paths)
+	draw_connecting_node_lines()
+
+	#print("Nodes: ", nodes)
+	#print("\n")
+	#print("Paths: ", paths)
 	
 	available_nodes = nodes[0]
 
+func draw_connecting_node_lines():
+	for path in paths:
+		# Create lines between each pair of nodes in the path
+		var node_a = path[0]
+		var node_b = path[1]
+		create_line_between_nodes(node_a, node_b)
+	
 # Ensures nodes are connected without intersections
 func connect_nodes_without_intersections(previous_layer: Array, current_layer: Array):
 	var previous_size = previous_layer.size()
@@ -114,9 +123,10 @@ func connect_nodes_without_intersections(previous_layer: Array, current_layer: A
 			for j in range(start_index + 1, end_index + 1):
 				if j < current_size and !is_path_exists(previous_layer[i], current_layer[j]):
 					paths.append([previous_layer[i], current_layer[j]])
+	
 
 # Checks if a path between two nodes already exists
-func is_path_exists(node_a: String, node_b: String) -> bool:
+func is_path_exists(node_a, node_b) -> bool:
 	for path in paths:
 		if path[0] == node_a and path[1] == node_b:
 			return true
@@ -183,4 +193,42 @@ func generate_random_points(num_points: int) -> Array:
 
 	return points
 	
+# Function to create a line mesh between two nodes
+func create_line_between_nodes(node_a: Node3D, node_b: Node3D) -> void:
+	# Get positions of the two nodes
+	var pos_a = node_a.global_position
+	var pos_b = node_b.global_position
+	print("Calculating 2 points")
+	print(pos_a)
+	print(pos_b)
 
+	# Calculate the distance between the nodes
+	var distance = pos_a.distance_to(pos_b)
+
+	# Calculate the midpoint
+	var midpoint = (pos_a + pos_b) / 2
+	midpoint.y -= .6
+
+	print(midpoint)
+
+	# Create the BoxMesh
+	var box_mesh = BoxMesh.new()
+	box_mesh.size = Vector3(0.025, 0.01, distance)  # Set the dimensions, z is the distance
+	#box_mesh.size = Vector3(0.01, 0.01, .01)  # Set the dimensions, z is the distance
+	
+	# Create a MeshInstance3D to hold the mesh
+	var mesh_instance = MeshInstance3D.new()
+	mesh_instance.mesh = box_mesh
+
+	# Set the position to the midpoint
+	mesh_instance.global_position = midpoint
+
+	# Calculate the rotation around the Y axis
+	var direction = (pos_b - pos_a).normalized()
+	var rotation_y = direction.angle_to(Vector3.FORWARD)
+
+	# Set the rotation of the mesh instance
+	mesh_instance.rotation_degrees.y = rotation_y * rad_to_deg(1)  # Convert to degrees
+	
+	# Add the MeshInstance3D to the current node
+	add_child(mesh_instance)

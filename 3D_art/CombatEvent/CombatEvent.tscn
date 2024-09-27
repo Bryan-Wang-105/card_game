@@ -6,7 +6,8 @@
 size = Vector3(0.213064, 0.178955, 0.130066)
 
 [node name="CombatEvent" type="CollisionShape3D" groups=["battle"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00177759, 0.00177638, -0.000145525)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00177759, 0.0910032, -0.000145525)
 shape = SubResource("BoxShape3D_8kd0p")
 
 [node name="Soldier" parent="." instance=ExtResource("1_ldko5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0225776, -0.00328207)
