@@ -67,7 +67,7 @@ func generate_nodes_and_paths():
 
 			# Set the position of the new instance to the position of the specified node
 			scene_instance.position = node_pos.position
-			scene_instance.position.y = node_pos.position.y + .15
+			scene_instance.position.y = node_pos.position.y + .08
 			if len(horizontal_offset) > 1:
 				scene_instance.position.x = node_pos.position.x + horizontal_offset[node_index]
 
@@ -208,14 +208,12 @@ func create_line_between_nodes(node_a: Node3D, node_b: Node3D) -> void:
 
 	# Calculate the midpoint
 	var midpoint = (pos_a + pos_b) / 2
-	midpoint.y -= .6
-
+	midpoint.y = .021
 	print(midpoint)
 
 	# Create the BoxMesh
 	var box_mesh = BoxMesh.new()
 	box_mesh.size = Vector3(0.025, 0.01, distance)  # Set the dimensions, z is the distance
-	#box_mesh.size = Vector3(0.01, 0.01, .01)  # Set the dimensions, z is the distance
 	
 	# Create a MeshInstance3D to hold the mesh
 	var mesh_instance = MeshInstance3D.new()
@@ -238,3 +236,4 @@ func create_line_between_nodes(node_a: Node3D, node_b: Node3D) -> void:
 	
 	# Add the MeshInstance3D to the current node
 	add_child(mesh_instance)
+
