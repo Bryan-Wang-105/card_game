@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://de5tugve56jad" path="res://3D_art/ShopEvent/ShopMesh.tscn" id="1_pjytp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q1kny"]
-size = Vector3(0.219678, 0.22762, 0.169492)
+size = Vector3(0.119434, 0.218302, 0.113601)
 
 [node name="ShopEvent" type="CollisionShape3D" groups=["shop"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00490722, 0.117126, -0.0221092)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00186398, 0.100941, -0.00186957)
 shape = SubResource("BoxShape3D_q1kny")
 
 [node name="ShopMesh" parent="." instance=ExtResource("1_pjytp")]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.0730807, 0.00674796)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.0597818, 0.0182737)

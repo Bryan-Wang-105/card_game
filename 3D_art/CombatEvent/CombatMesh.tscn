@@ -31,7 +31,7 @@ albedo_color = Color(0.615686, 0.231373, 0, 1)
 size = Vector3(0.213064, 0.178955, 0.130066)
 
 [node name="Soldier" type="MeshInstance3D" groups=["battle"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00127538, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0809739, -0.00328207)
 mesh = SubResource("CapsuleMesh_5hl8y")
 surface_material_override/0 = SubResource("StandardMaterial3D_dflel")
 

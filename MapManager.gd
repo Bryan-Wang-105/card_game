@@ -4,6 +4,8 @@ extends StaticBody3D
 
 var path_to_combat = "res://3D_art/CombatEvent/CombatEvent.tscn"
 var path_to_shop = "res://3D_art/ShopEvent/ShopEvent.tscn"
+var toSpawnCombat = load(path_to_combat)
+var toSpawnShop = load(path_to_shop)
 var available_nodes = []
 
 var layers := 5
@@ -13,17 +15,15 @@ var paths := []  # Array to store paths (connections between nodes)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	place_events()
-	#generate_nodes_and_paths()
+	#place_events()
+	generate_nodes_and_paths()
 
 func place_events():
-	var toSpawnCombat = load(path_to_combat)
-	var toSpawnShop = load(path_to_shop)
 	var scene_instance
 	var start_node = get_node("Starting point")
 	var node_pos
 	
-	for i in range(5):
+	for i in range(layers):
 		node_pos = start_node.get_child(i)
 		
 		if i % 2 == 0:
@@ -41,24 +41,48 @@ func place_events():
 
 		# Add the instance to the current scene
 		add_child(scene_instance)
-		
-		# Reset node pos
-		node_pos = get_node("Starting point")
+
 
 # Generates the nodes and paths as arrays
 func generate_nodes_and_paths():
+	var percent
+	var scene_instance
+	var start_node = get_node("Starting point")
+	var node_pos
+	
+	print("A")
 	for layer_index in range(layers):
+		print(layer_index)
 		var current_layer_nodes := []
-
+		var horizontal_offset = []
+		node_pos = start_node.get_child(layer_index)
+		horizontal_offset = generate_random_points(nodes_per_layer[layer_index])
+		print("B")
 		# Generate nodes for each layer (store their unique IDs)
 		for node_index in range(nodes_per_layer[layer_index]):
-			current_layer_nodes.append("Node_%d_%d" % [layer_index, node_index])
-		
-		nodes.append(current_layer_nodes)
+			percent = randi_range(0,1)
+			if percent == 0:
+				scene_instance = toSpawnCombat.instantiate()
+			else:
+				scene_instance = toSpawnShop.instantiate()
 
-		# Connect the nodes from the previous layer to the current layer
-		if layer_index > 0:
-			connect_nodes_without_intersections(nodes[layer_index - 1], current_layer_nodes)
+			# Set the position of the new instance to the position of the specified node
+			scene_instance.position = node_pos.position
+			scene_instance.position.y = node_pos.position.y + .15
+
+			if len(horizontal_offset) > 1:
+				scene_instance.position.x = node_pos.position.x + horizontal_offset[node_index]
+
+			current_layer_nodes.append("Layer %d / Node %d" % [layer_index, node_index])
+
+			# Add the instance to the current scene
+			add_child(scene_instance)
+			
+			nodes.append(current_layer_nodes)
+
+			# Connect the nodes from the previous layer to the current layer
+			if layer_index > 0:
+				connect_nodes_without_intersections(nodes[layer_index - 1], current_layer_nodes)
 
 	print("Nodes: ", nodes)
 	print("Paths: ", paths)
@@ -130,5 +154,33 @@ func restore_map():
 func update_available_nodes():
 	available_nodes[0] += 1
 	
+	
+func generate_random_points(num_points: int) -> Array:
+	# Validate the input to ensure it doesn't exceed 5 points
+	if num_points < 1 or num_points > 5:
+		print("Number of points must be between 1 and 5.")
+		return []
+
+	var points = []
+	var lower_bound = -1
+	var upper_bound = 1
+	var boundary = 0.3
+
+	# Generate unique random points within the specified range and minimum distance
+	while points.size() < num_points:
+		var random_point = randf_range(lower_bound + boundary, upper_bound - boundary)
+
+		# Check if the point respects the minimum distance
+		var is_valid_point = true
+		for point in points:
+			if abs(random_point - point) < 0.2:
+				is_valid_point = false
+				break
+
+		# If valid, add the point to the list
+		if is_valid_point:
+			points.append(random_point)
+
+	return points
 	
 
