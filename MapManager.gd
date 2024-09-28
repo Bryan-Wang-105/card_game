@@ -81,10 +81,16 @@ func draw_connecting_node_lines():
 		create_line_between_nodes(node_a, node_b)
 
 # Ensures nodes are connected without intersections
-func connect_nodes_without_intersections(previous_layer: Array, current_layer: Array):
+func connect_nodes_without_intersections(previous_layer: Array, current_layer: Array):	
 	var previous_size = previous_layer.size()
 	var current_size = current_layer.size()
 
+	# Track connections for each node in the current layer
+	var current_layer_connections = []
+	for i in range(current_size):
+		current_layer_connections.append(0)  # Initialize with no parents
+
+	# First pass: Ensure each node in the previous layer has at least one connection
 	for i in range(previous_size):
 		# Map the node in the previous layer to an index range in the current layer
 		var start_index = int(floor(float(i) * current_size / previous_size))
@@ -94,17 +100,37 @@ func connect_nodes_without_intersections(previous_layer: Array, current_layer: A
 		for j in range(start_index, end_index + 1):
 			if j < current_size:
 				paths.append([previous_layer[i], current_layer[j]])
+				current_layer_connections[j] += 1
 				break  # Ensure at least one connection
 
-	# Optionally, add additional connections without crossing existing ones
+	# Second pass: Optionally add additional connections and ensure every node has at least one parent
 	for i in range(previous_size):
 		var start_index := int(floor(float(i) * current_size / previous_size))
 		var end_index := int(ceil(float(i + 1) * current_size / previous_size)) - 1
 		
-		if current_size > 1:
-			for j in range(start_index + 1, end_index + 1):
+		if i == previous_size - 1:
+			# On second-to-last layer, connect all possible nodes to the final layer
+			for j in range(start_index, end_index + 1):
 				if j < current_size and !is_path_exists(previous_layer[i], current_layer[j]):
 					paths.append([previous_layer[i], current_layer[j]])
+					current_layer_connections[j] += 1
+		else:
+			# For other layers, add some optional connections with 50% chance, and ensure no crisscrossing
+			if current_size > 1:
+				for j in range(start_index + 1, end_index + 1):
+					if j < current_size and !is_path_exists(previous_layer[i], current_layer[j]):
+						# Randomly skip the connection if the current node already has a connection
+						if randf() < 0.5:
+							paths.append([previous_layer[i], current_layer[j]])
+							current_layer_connections[j] += 1
+
+	# Ensure every node in the current layer has at least one parent
+	for j in range(current_size):
+		if current_layer_connections[j] == 0:
+			# If a node has no parent, force a connection from the previous layer
+			var fallback_parent = randi() % previous_size  # Random fallback parent from previous layer
+			paths.append([previous_layer[fallback_parent], current_layer[j]])
+			current_layer_connections[j] += 1
 	
 	# If there is two layers with same sizes, throw in some connections
 	if current_size == previous_size:
