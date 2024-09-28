@@ -50,4 +50,4 @@ BUG SYSTEM:
 	5) Sometimes spawns 4 cards when it should only spawn 2?
 	
 FOR TOMORROW:
-	1) Work on "special" card abilities
+	1) If there are 3 nodes in 1 layer, and 3 nodes in next layer, make more paths

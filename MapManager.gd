@@ -79,7 +79,7 @@ func draw_connecting_node_lines():
 		var node_a = path[0]
 		var node_b = path[1]
 		create_line_between_nodes(node_a, node_b)
-	
+
 # Ensures nodes are connected without intersections
 func connect_nodes_without_intersections(previous_layer: Array, current_layer: Array):
 	var previous_size = previous_layer.size()
@@ -106,6 +106,45 @@ func connect_nodes_without_intersections(previous_layer: Array, current_layer: A
 				if j < current_size and !is_path_exists(previous_layer[i], current_layer[j]):
 					paths.append([previous_layer[i], current_layer[j]])
 	
+	# If there is two layers with same sizes, throw in some connections
+	if current_size == previous_size:
+		var numNodesToMod = randi_range(0, current_size-1)
+		var nodesToModIndex = []
+		var count = 0
+		var num
+		
+		while count < numNodesToMod:
+			num = randi_range(0,current_size-1)
+			if num in nodesToModIndex:
+				if num == 0 or num == current_size - 1:
+					pass
+				elif nodesToModIndex.count(num) >= 2:
+					pass
+				else:
+					nodesToModIndex.append(num)
+					count += 1
+			else:
+				nodesToModIndex.append(num)
+				count += 1
+		
+		print("SORTING HERE")
+		nodesToModIndex.sort()
+		print(nodesToModIndex)
+		
+		count = 0
+		for nodeIndex in nodesToModIndex:
+			if nodeIndex == 0:
+				paths.append([previous_layer[0], current_layer[1]])
+			elif nodeIndex == current_size - 1:
+				paths.append([previous_layer[current_size - 1], current_layer[current_size - 2]])
+			else:
+				if nodeIndex - 1 in nodesToModIndex and nodeIndex + 1 in nodesToModIndex:
+					pass
+				elif nodeIndex - 1 in nodesToModIndex or nodeIndex in nodesToModIndex.slice(0,count):
+					paths.append([previous_layer[nodeIndex], current_layer[nodeIndex + 1]])
+				else:
+					paths.append([previous_layer[nodeIndex], current_layer[nodeIndex - 1]])
+			count += 1
 
 # Checks if a path between two nodes already exists
 func is_path_exists(node_a, node_b) -> bool:
