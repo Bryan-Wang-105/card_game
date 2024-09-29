@@ -12,6 +12,7 @@ var state: gameState = gameState.OPEN_MAP
 @onready var map: StaticBody3D = $Map
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var enemy_hp: MeshInstance3D = $Enemy/enemy_hp
+@onready var shop: StaticBody3D = $ShopAtEvent
 
 var level
 var curr_node
@@ -21,6 +22,7 @@ func _ready() -> void:
 	if state == 0:
 		make_disappear(draw_pile)
 		make_disappear(battlefield)
+		make_disappear(shop)
 		enemy_hp.visible = false
 	
 	level = 1
@@ -42,6 +44,7 @@ func clicked_event(num):
 		if "shop" in event_collider.get_groups():
 			map.clear_map()
 			print("SHOP TIME")
+			call_shop_start()
 
 	else:
 		print("NOT AVAILABLE YET")
@@ -71,6 +74,9 @@ func update_enemy_health_ui():
 		enemy_hp.mesh.text = "~ DEFEATED ~"
 	else:
 		enemy_hp.mesh.text = str(enemy_manager.curr_enemy_health) + " HP"
+
+func call_shop_start():
+	make_reappear(shop)
 
 func make_disappear(item):
 	item.set_collision_layer(0)

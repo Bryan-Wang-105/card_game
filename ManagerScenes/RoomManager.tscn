@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://dg4ff03mwpngs"]
+[gd_scene load_steps=26 format=3 uid="uid://dg4ff03mwpngs"]
 
 [ext_resource type="Script" path="res://ManagerScripts/RoomManager.gd" id="1_0tmj5"]
 [ext_resource type="PackedScene" uid="uid://b2ctxrbeltat2" path="res://ManagerScenes/battlefield.tscn" id="2_oj6sw"]
+[ext_resource type="PackedScene" uid="uid://cb2ntbj5mcdej" path="res://3D_art/ShopEvent/ShopAtEvent1.tscn" id="3_m3wvo"]
 [ext_resource type="PackedScene" uid="uid://bd7vo3klebdfh" path="res://ManagerScenes/MapManager.tscn" id="3_sjxh4"]
 [ext_resource type="PackedScene" uid="uid://dq22usxkh5ab" path="res://3D_art/line.tscn" id="4_benan"]
 
@@ -106,77 +107,80 @@ script = ExtResource("1_0tmj5")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tgbc2")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Room" type="StaticBody3D" parent="."]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="StaticBody3D"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Room"]
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75589, 0)
 size = Vector3(5, 3.48328, 5)
 material = SubResource("StandardMaterial3D_gh51m")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Room/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0173677, 1.66362, -4.60744e-05)
 operation = 2
 size = Vector3(4.54363, 3, 4.73983)
 material = SubResource("StandardMaterial3D_gh51m")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Room/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.38695, 3.04145, 0.092041)
 operation = 2
 size = Vector3(0.434998, 0.166504, 4.12646)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Room/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36271, 3.04145, 0.092041)
 operation = 2
 size = Vector3(0.434998, 0.166504, 4.12646)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Room/CSGCombiner3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.000659347, 3.04145, -2.35225)
 operation = 2
 size = Vector3(0.434998, 0.166504, 4.12646)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Room/CSGCombiner3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.00567055, 3.04145, 2.32162)
 operation = 2
 size = Vector3(0.434998, 0.166504, 4.12646)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="Lighting" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5547, 0)
 light_color = Color(0.839216, 0.678431, 0.533333, 1)
 light_energy = 4.394
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="OmniLight3D"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lighting"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.33627)
 light_color = Color(0.839216, 0.678431, 0.533333, 1)
 light_energy = 1.473
 
-[node name="DESK" type="StaticBody3D" parent="."]
+[node name="Desk" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0451424, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DESK"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Desk"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.323895, 0)
 mesh = SubResource("BoxMesh_1rbr5")
 surface_material_override/0 = SubResource("StandardMaterial3D_xwsdf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DESK"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.323895, 0)
 shape = SubResource("ConvexPolygonShape3D_gy7kj")
 
 [node name="drawPile" type="StaticBody3D" parent="."]
 collision_layer = 3
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="drawPile"]
+[node name="PileMesh" type="MeshInstance3D" parent="drawPile"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20155, 0.563908, 0.598045)
 mesh = SubResource("BoxMesh_csrwl")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="drawPile"]
+[node name="PileCollider" type="CollisionShape3D" parent="drawPile"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20155, 0.563908, 0.598045)
 shape = SubResource("ConvexPolygonShape3D_7w21q")
 
 [node name="Battlefield" parent="." instance=ExtResource("2_oj6sw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.372082, 0)
+
+[node name="ShopAtEvent" parent="." instance=ExtResource("3_m3wvo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.157631, 0.547479, 0.0631853)
 
 [node name="Map" parent="." instance=ExtResource("3_sjxh4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.497848, 0)

@@ -38,12 +38,12 @@ func generate_nodes_and_paths():
 		horizontal_offset.sort()
 		# Generate nodes for each layer (store their unique IDs)
 		for node_index in range(nodes_per_layer[layer_index]):
-			percent = randi_range(0,1)
+			percent = randi_range(0,10)
 			
-			if percent == 0:
-				scene_instance = toSpawnCombat.instantiate()
-			else:
+			if percent >= 0 and percent < 3 and layer_index != 0 and layer_index != layers-1:
 				scene_instance = toSpawnShop.instantiate()
+			else:
+				scene_instance = toSpawnCombat.instantiate()
 
 			# Set the position of the new instance to the position of the specified node
 			scene_instance.position = node_pos.position

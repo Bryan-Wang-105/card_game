@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb2ntbj5mcdej"]
+
+[ext_resource type="PackedScene" uid="uid://b4sub8mkdap1v" path="res://3D_art/ShopEvent/ShopAtEventMesh.tscn" id="1_onbvs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gw2w8"]
+size = Vector3(0.613251, 0.250061, 1)
+
+[node name="ShopAtEvent" type="StaticBody3D"]
+
+[node name="TentMesh" parent="." instance=ExtResource("1_onbvs")]
+
+[node name="ShopCollider" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.930597, 0, 0.366047, 0, 1, 0, -0.366047, 0, 0.930597, 0.662168, 0.145416, -0.210405)
+shape = SubResource("BoxShape3D_gw2w8")
