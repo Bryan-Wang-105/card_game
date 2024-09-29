@@ -14,6 +14,7 @@ var state: gameState = gameState.OPEN_MAP
 @onready var enemy_hp: MeshInstance3D = $Enemy/enemy_hp
 
 var level
+var curr_node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,6 +35,7 @@ func clicked_event(num):
 	if num == 0:
 		print("No real event clicked")
 	elif event_collider in map.get_available_nodes():
+		curr_node = event_collider
 		if "battle" in event_collider.get_groups():
 			map.clear_map()
 			call_battle_manager_start()
@@ -60,7 +62,7 @@ func cleanup_battlefield():
 	make_disappear(draw_pile)
 	make_disappear(battlefield)
 	player_manager.cleanup_hand()
-	map.restore_map()
+	map.restore_map(curr_node)
 	player_manager.toggle_gui()
 
 func update_enemy_health_ui():

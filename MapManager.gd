@@ -7,6 +7,7 @@ var path_to_shop = "res://3D_art/ShopEvent/ShopEvent.tscn"
 var toSpawnCombat = load(path_to_combat)
 var toSpawnShop = load(path_to_shop)
 var available_nodes = []
+var avail_nodes_dict = {}
 
 var layers := 5
 var nodes_per_layer := [5, 3, 4, 3, 1]  # Number of nodes per layer
@@ -65,13 +66,22 @@ func generate_nodes_and_paths():
 
 	draw_connecting_node_lines()
 
-	#print("Nodes: ", nodes)
-	#print("\n")
-	#print("Paths: ", paths)
+	print("Nodes: ", nodes)
+	print("\n")
+	print("Paths: ", paths)
 	
 	available_nodes = nodes[0]
 	print("CAN GO HERE")
 	print(available_nodes)
+	
+	# Could eventually use a dict for both paths and available node feature but too lazy
+	for path in paths:
+		if path[0] not in avail_nodes_dict:
+			avail_nodes_dict[path[0]] = [path[1]]
+		else:
+			avail_nodes_dict[path[0]].append(path[1])
+	
+	print(avail_nodes_dict)
 
 func draw_connecting_node_lines():
 	for path in paths:
@@ -193,7 +203,7 @@ func clear_map():
 			child.disabled = true
 		index += 1
 
-func restore_map():
+func restore_map(curr_node):
 	var index = 0
 	
 	for child in get_children():
@@ -204,10 +214,10 @@ func restore_map():
 			child.disabled = false
 		index += 1
 	
-	update_available_nodes()
+	update_available_nodes(curr_node)
 
-func update_available_nodes():
-	available_nodes[0]
+func update_available_nodes(x):
+	available_nodes = avail_nodes_dict[x]
 	
 	
 func generate_random_points(num_points: int) -> Array:
