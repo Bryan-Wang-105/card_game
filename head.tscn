@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://mmwdjwskqve8"]
 
 [ext_resource type="PackedScene" uid="uid://cfa1ni76ide4n" path="res://root.tscn" id="2_btqrk"]
-[ext_resource type="Script" path="res://Camera3D.gd" id="2_n4b7f"]
+[ext_resource type="Script" path="res://ManagerScripts/CameraManager.gd" id="2_n4b7f"]
 
 [sub_resource type="Animation" id="Animation_5jq8y"]
 resource_name = "POV_0_1"

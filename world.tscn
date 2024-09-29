@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cm41xy1rrxyfm"]
 
 [ext_resource type="Script" path="res://ManagerScripts/PlayerManager.gd" id="1_a3tpb"]
-[ext_resource type="PackedScene" uid="uid://dg4ff03mwpngs" path="res://RoomManager.tscn" id="1_ribun"]
+[ext_resource type="PackedScene" uid="uid://dg4ff03mwpngs" path="res://ManagerScenes/RoomManager.tscn" id="1_ribun"]
 [ext_resource type="Script" path="res://GUI.gd" id="2_6n8e6"]
 [ext_resource type="PackedScene" uid="uid://mmwdjwskqve8" path="res://head.tscn" id="2_b4ccd"]
 [ext_resource type="Script" path="res://ManagerScripts/DeckManager.gd" id="5_aqeeq"]

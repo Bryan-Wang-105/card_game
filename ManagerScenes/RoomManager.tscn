@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://dg4ff03mwpngs"]
+[gd_scene load_steps=25 format=3 uid="uid://dg4ff03mwpngs"]
 
 [ext_resource type="Script" path="res://ManagerScripts/RoomManager.gd" id="1_0tmj5"]
-[ext_resource type="PackedScene" uid="uid://b2ctxrbeltat2" path="res://battlefield.tscn" id="1_1hipy"]
-[ext_resource type="PackedScene" uid="uid://bd7vo3klebdfh" path="res://MapManager.tscn" id="3_sjxh4"]
+[ext_resource type="PackedScene" uid="uid://b2ctxrbeltat2" path="res://ManagerScenes/battlefield.tscn" id="2_oj6sw"]
+[ext_resource type="PackedScene" uid="uid://bd7vo3klebdfh" path="res://ManagerScenes/MapManager.tscn" id="3_sjxh4"]
+[ext_resource type="PackedScene" uid="uid://dq22usxkh5ab" path="res://3D_art/line.tscn" id="4_benan"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tgrl2"]
 sky_top_color = Color(0, 0.0509804, 0.133333, 1)
@@ -174,7 +175,7 @@ mesh = SubResource("BoxMesh_csrwl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20155, 0.563908, 0.598045)
 shape = SubResource("ConvexPolygonShape3D_7w21q")
 
-[node name="Battlefield" parent="." instance=ExtResource("1_1hipy")]
+[node name="Battlefield" parent="." instance=ExtResource("2_oj6sw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.372082, 0)
 
 [node name="Map" parent="." instance=ExtResource("3_sjxh4")]
@@ -204,10 +205,8 @@ mesh = SubResource("BoxMesh_yk644")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u0f6o")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Enemy/MeshInstance3D"]
-transform = Transform3D(-4.13177e-08, 1.42664e-08, -1, 0.326377, 0.94524, 0, 0.94524, -0.326377, -4.37114e-08, 0.0416709, -0.0633043, 0.0653988)
+[node name="MeshInstance3D3" parent="Enemy/MeshInstance3D" instance=ExtResource("4_benan")]
 mesh = SubResource("BoxMesh_jg7qw")
-skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_nvk76")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Enemy/MeshInstance3D"]

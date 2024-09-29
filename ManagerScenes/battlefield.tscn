@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://b2ctxrbeltat2"]
 
-[ext_resource type="Script" path="res://battlefield.gd" id="1_vt8ng"]
-[ext_resource type="Material" uid="uid://cb2307q4de72i" path="res://3D_art/slot_text.tres" id="2_r5dwc"]
+[ext_resource type="Script" path="res://ManagerScripts/BattlefieldManager.gd" id="1_e3gdi"]
+[ext_resource type="Material" uid="uid://cb2307q4de72i" path="res://3D_art/slot_text.tres" id="2_usofw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7vh4j"]
 size = Vector3(0.274475, 0.0229551, 0.334747)
@@ -31,7 +31,7 @@ font_size = 8
 
 [node name="Battlefield" type="StaticBody3D" groups=["cardSlot"]]
 collision_layer = 3
-script = ExtResource("1_vt8ng")
+script = ExtResource("1_e3gdi")
 
 [node name="slot" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.809357, 0.155467, 0.401138)
@@ -76,7 +76,7 @@ shape = SubResource("BoxShape3D_7vh4j")
 [node name="mesh" type="MeshInstance3D" parent="slot4"]
 mesh = SubResource("BoxMesh_7f7kw")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_r5dwc")
+surface_material_override/0 = ExtResource("2_usofw")
 
 [node name="slot5" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262853, 0.155467, -0.117343)
@@ -85,7 +85,7 @@ shape = SubResource("BoxShape3D_7vh4j")
 [node name="mesh" type="MeshInstance3D" parent="slot5"]
 mesh = SubResource("BoxMesh_7f7kw")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_r5dwc")
+surface_material_override/0 = ExtResource("2_usofw")
 
 [node name="slot6" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289775, 0.155467, -0.117343)
@@ -94,7 +94,7 @@ shape = SubResource("BoxShape3D_7vh4j")
 [node name="mesh" type="MeshInstance3D" parent="slot6"]
 mesh = SubResource("BoxMesh_7f7kw")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_r5dwc")
+surface_material_override/0 = ExtResource("2_usofw")
 
 [node name="slot7" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.800344, 0.155467, -0.117343)
@@ -103,7 +103,7 @@ shape = SubResource("BoxShape3D_7vh4j")
 [node name="mesh" type="MeshInstance3D" parent="slot7"]
 mesh = SubResource("BoxMesh_7f7kw")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_r5dwc")
+surface_material_override/0 = ExtResource("2_usofw")
 
 [node name="slot8" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.819955, 0.155467, -0.535595)
@@ -112,7 +112,7 @@ shape = SubResource("BoxShape3D_7vh4j")
 [node name="mesh" type="MeshInstance3D" parent="slot8"]
 mesh = SubResource("BoxMesh_7f7kw")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_r5dwc")
+surface_material_override/0 = ExtResource("2_usofw")
 
 [node name="slot9" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262853, 0.155467, -0.535595)
@@ -121,7 +121,7 @@ shape = SubResource("BoxShape3D_7vh4j")
 [node name="mesh" type="MeshInstance3D" parent="slot9"]
 mesh = SubResource("BoxMesh_7f7kw")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_r5dwc")
+surface_material_override/0 = ExtResource("2_usofw")
 
 [node name="slot10" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289775, 0.155467, -0.535595)
@@ -130,7 +130,7 @@ shape = SubResource("BoxShape3D_7vh4j")
 [node name="mesh" type="MeshInstance3D" parent="slot10"]
 mesh = SubResource("BoxMesh_7f7kw")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_r5dwc")
+surface_material_override/0 = ExtResource("2_usofw")
 
 [node name="slot11" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.800344, 0.155467, -0.535595)
@@ -139,7 +139,7 @@ shape = SubResource("BoxShape3D_7vh4j")
 [node name="mesh" type="MeshInstance3D" parent="slot11"]
 mesh = SubResource("BoxMesh_7f7kw")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_r5dwc")
+surface_material_override/0 = ExtResource("2_usofw")
 
 [node name="EndTurnCollider" type="CollisionShape3D" parent="." groups=["endTurn"]]
 transform = Transform3D(0.682651, -0.338091, 0.647829, -0.0683002, 0.853132, 0.517206, -0.727546, -0.397318, 0.559299, -1.10414, 0.267522, 0.35716)

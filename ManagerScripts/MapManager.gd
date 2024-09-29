@@ -219,7 +219,6 @@ func restore_map(curr_node):
 func update_available_nodes(x):
 	available_nodes = avail_nodes_dict[x]
 	
-	
 func generate_random_points(num_points: int) -> Array:
 	# Validate the input to ensure it doesn't exceed 5 points
 	if num_points < 1 or num_points > 5:

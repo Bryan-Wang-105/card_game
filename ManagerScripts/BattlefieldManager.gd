@@ -43,13 +43,24 @@ func toggle_end_turn():
 	get_child(13).visible = !player_manager.player_turn
 
 func clean_board():
-	enemyBackRow = [null, null, null, null]
-	enemyRow = [null, null, null, null]
-
+	# Clear player/enemy row visual assets and child relations
 	for i in range(4):
 		if playerRow[i]:
-			playerRow[i] = null
 			get_child(i).get_child(1).queue_free()
+		
+		if enemyRow[i]:
+			if get_child(i+4).get_child(1):
+				get_child(i+4).get_child(1).queue_free()
+			
+		if enemyBackRow[i]:
+			if get_child(i+8).get_child(1):
+				get_child(i+8).get_child(1).queue_free()
+			
+	enemyBackRow = [null, null, null, null]
+	enemyRow = [null, null, null, null]
+	playerRow = [null, null, null, null]
+
+	
 
 func populate_initial_enemies():
 	if room_manager.level == 1:
