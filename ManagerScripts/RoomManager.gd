@@ -45,7 +45,6 @@ func clicked_event(num):
 			map.clear_map()
 			print("SHOP TIME")
 			call_shop_start()
-
 	else:
 		print("NOT AVAILABLE YET")
 		
@@ -77,6 +76,11 @@ func update_enemy_health_ui():
 
 func call_shop_start():
 	make_reappear(shop)
+
+func cleanup_shop():
+	print("Clean up shop!")
+	make_disappear(shop)
+	map.restore_map(curr_node)
 
 func make_disappear(item):
 	item.set_collision_layer(0)

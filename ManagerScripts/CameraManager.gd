@@ -5,6 +5,7 @@ extends Camera3D
 @onready var hand: Node = $'Root/Hand'
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var battlefield: StaticBody3D = $'../../../RoomManager/Battlefield'
+@onready var shop: StaticBody3D = $'../../../RoomManager/ShopAtEvent'
 @onready var room_manager: Node3D = $'../../../RoomManager'
 @onready var battle_manager: Node = $'../../../BattleManager'
 
@@ -124,58 +125,64 @@ func _input(event: InputEvent) -> void:
 			if player_manager.player_turn:
 				var raycast_obj = raycast_result.get("collider")
 				print(raycast_obj)
-				# Clicked Drawpile
-				if raycast_obj.name == "drawPile":
-					if !hand.selected_card:
-						player_manager._draw_card()
-				# Clicked Battlefield Slot
-				elif raycast_obj.is_in_group("cardSlot"):
-					var fieldSlot = raycast_result.shape
-					print("CLICKED ON BATTLEFIELD NODE:" + str(raycast_result.shape))
-					print(raycast_obj.get_children())
-					# Card slot clicked and Card Selected for play
-					if hand.selected_card and hand.selected_card.state == 2 and fieldSlot < 4 and player_manager.actions_left > 0:
-						if battlefield.check_slot(fieldSlot):
-							print(hand.selected_card)
-							hand.selected_card.hand_pos = -1
-							hand.selected_card.set_state(4)
-							battlefield.place_card(hand.selected_card, fieldSlot)
+				if battle_manager.in_battle:
+					# Clicked Drawpile
+					if raycast_obj.name == "drawPile":
+						if !hand.selected_card:
+							player_manager._draw_card()
+					# Clicked Battlefield Slot
+					elif raycast_obj.is_in_group("cardSlot"):
+						var fieldSlot = raycast_result.shape
+						print("CLICKED ON BATTLEFIELD NODE:" + str(raycast_result.shape))
+						print(raycast_obj.get_children())
+						# Card slot clicked and Card Selected for play
+						if hand.selected_card and hand.selected_card.state == 2 and fieldSlot < 4 and player_manager.actions_left > 0:
+							if battlefield.check_slot(fieldSlot):
+								print(hand.selected_card)
+								hand.selected_card.hand_pos = -1
+								hand.selected_card.set_state(4)
+								battlefield.place_card(hand.selected_card, fieldSlot)
+								hand.selected_card = null
+								hand.finish_placing()
+								player_manager.decrease_action()
+								player_manager.hand_count -= 1
+								player_manager.update_hand_count()
+							else:
+								hand.unselect(hand.selected_card.hand_pos)
+								hand.selected_card.set_state(0)
+								hand.selected_card = null
+							pass
+						# END TURN clicked w/no cards and on your turn
+						elif !hand.selected_card and raycast_obj.get_child(fieldSlot).name == "EndTurnCollider" and player_manager.player_turn:
+							print("TURN ENDED")
+							player_manager.player_turn = false
+							battle_manager.end_turn()
+							pass
+					# Clicked card in Hand
+					elif raycast_obj.is_in_group("cardInHand"):
+						print("CLICKED CARD IN HAND " + str(raycast_obj.hand_pos))
+						print("CURR CARD STATE: " + str(raycast_obj.state))
+						if raycast_obj.state == 2:
+							print("UNSELECTED")
 							hand.selected_card = null
-							hand.finish_placing()
-							player_manager.decrease_action()
-							player_manager.hand_count -= 1
-							player_manager.update_hand_count()
+							hand.unselect(raycast_obj.hand_pos)
+							print("NEW CARD STATE: " + str(raycast_obj.state))
 						else:
-							hand.unselect(hand.selected_card.hand_pos)
-							hand.selected_card.set_state(0)
-							hand.selected_card = null
-						pass
-					# END TURN clicked w/no cards and on your turn
-					elif !hand.selected_card and raycast_obj.get_child(fieldSlot).name == "EndTurnCollider" and player_manager.player_turn:
-						print("TURN ENDED")
-						player_manager.player_turn = false
-						battle_manager.end_turn()
-						pass
-				# Clicked card in Hand
-				elif raycast_obj.is_in_group("cardInHand"):
-					print("CLICKED CARD IN HAND " + str(raycast_obj.hand_pos))
-					print("CURR CARD STATE: " + str(raycast_obj.state))
-					if raycast_obj.state == 2:
-						print("UNSELECTED")
-						hand.selected_card = null
-						hand.unselect(raycast_obj.hand_pos)
-						print("NEW CARD STATE: " + str(raycast_obj.state))
-					else:
-						print("SELECTED")
-						hand.selected_card = raycast_obj
-						hand.select(raycast_obj.hand_pos)
-						print("NEW CARD STATE: " + str(raycast_obj.state))
-				# Clicked Map
-				elif raycast_obj.is_in_group("map"):
-					print("CLICKED MAP")
-					var mapCollider = raycast_result.shape
-					print(mapCollider)
-					room_manager.clicked_event(raycast_result.shape)
+							print("SELECTED")
+							hand.selected_card = raycast_obj
+							hand.select(raycast_obj.hand_pos)
+							print("NEW CARD STATE: " + str(raycast_obj.state))
+				# ELSE NOT IN BATTLE
+				else:
+					print("NOT IN BATTLE CLICK")
+					# Clicked Map Event
+					if raycast_obj.is_in_group("map"):
+						print("CLICKED MAP")
+						var mapCollider = raycast_result.shape
+						print(mapCollider)
+						room_manager.clicked_event(raycast_result.shape)
+					elif raycast_obj.is_in_group("shop"):
+						shop.clickShop(raycast_result.shape)
 		else:
 			print("NULL CLICK")
 	

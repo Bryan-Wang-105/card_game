@@ -1,14 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://cb2ntbj5mcdej"]
+[gd_scene load_steps=5 format=3 uid="uid://cb2ntbj5mcdej"]
 
+[ext_resource type="Script" path="res://ManagerScripts/ShopManager.gd" id="1_abx31"]
 [ext_resource type="PackedScene" uid="uid://b4sub8mkdap1v" path="res://3D_art/ShopEvent/ShopAtEventMesh.tscn" id="1_onbvs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gw2w8"]
 size = Vector3(0.613251, 0.250061, 1)
 
-[node name="ShopAtEvent" type="StaticBody3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_s1wrq"]
+size = Vector3(0.598633, 0.25354, 0.180603)
+
+[node name="ShopManager" type="StaticBody3D" groups=["shop"]]
+script = ExtResource("1_abx31")
 
 [node name="TentMesh" parent="." instance=ExtResource("1_onbvs")]
 
-[node name="ShopCollider" type="CollisionShape3D" parent="."]
+[node name="ShopCollider" type="CollisionShape3D" parent="." groups=["buy", "shop"]]
 transform = Transform3D(0.930597, 0, 0.366047, 0, 1, 0, -0.366047, 0, 0.930597, 0.662168, 0.145416, -0.210405)
 shape = SubResource("BoxShape3D_gw2w8")
+
+[node name="ContinueCollider" type="CollisionShape3D" parent="." groups=["continue", "shop"]]
+transform = Transform3D(0.756504, 0, -0.653989, 0, 1, 0, 0.653989, 0, 0.756504, 1.18662, 0.817929, -0.770794)
+shape = SubResource("BoxShape3D_s1wrq")

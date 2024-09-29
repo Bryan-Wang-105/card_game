@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://cm41xy1rrxyfm"]
+
+[ext_resource type="Script" path="res://ManagerScripts/PlayerManager.gd" id="1_a3tpb"]
+[ext_resource type="PackedScene" uid="uid://dg4ff03mwpngs" path="res://ManagerScenes/RoomManager.tscn" id="1_ribun"]
+[ext_resource type="Script" path="res://GUI.gd" id="2_6n8e6"]
+[ext_resource type="PackedScene" uid="uid://mmwdjwskqve8" path="res://head.tscn" id="2_b4ccd"]
+[ext_resource type="Script" path="res://ManagerScripts/DeckManager.gd" id="5_aqeeq"]
+[ext_resource type="Script" path="res://cards/viper.gd" id="6_741mp"]
+[ext_resource type="Script" path="res://cards/vulture.gd" id="7_r2sq8"]
+[ext_resource type="Script" path="res://cards/arachnid.gd" id="8_o2vjy"]
+[ext_resource type="Script" path="res://ManagerScripts/BattleManager.gd" id="9_6abdu"]
+[ext_resource type="Script" path="res://ManagerScripts/EnemyManager.gd" id="10_sh3ug"]
+
+[node name="World" type="Node"]
+
+[node name="CardManager" type="Node" parent="."]
+
+[node name="CardObject" type="Node" parent="CardManager"]
+
+[node name="PlayerManager" type="Node" parent="."]
+script = ExtResource("1_a3tpb")
+
+[node name="Player" type="Node" parent="PlayerManager"]
+
+[node name="GUI" type="Control" parent="PlayerManager"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 647.0
+script = ExtResource("2_6n8e6")
+
+[node name="health" type="Label" parent="PlayerManager/GUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 20.0
+offset_right = -989.0
+offset_bottom = -585.0
+text = "test"
+vertical_alignment = 1
+
+[node name="actionCount" type="Label" parent="PlayerManager/GUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = 50.0
+offset_right = -990.0
+offset_bottom = -555.0
+text = "test"
+vertical_alignment = 1
+
+[node name="handCount" type="Label" parent="PlayerManager/GUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = 82.0
+offset_right = -990.0
+offset_bottom = -523.0
+text = "test"
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="PlayerManager/GUI"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 278.0
+offset_right = 1151.0
+offset_bottom = 314.0
+text = "."
+horizontal_alignment = 1
+
+[node name="RoomManager" parent="." instance=ExtResource("1_ribun")]
+
+[node name="CamNode" parent="." instance=ExtResource("2_b4ccd")]
+
+[node name="DeckManager" type="Node" parent="."]
+script = ExtResource("5_aqeeq")
+cards = Array[Resource]([ExtResource("8_o2vjy"), ExtResource("6_741mp"), ExtResource("7_r2sq8"), ExtResource("6_741mp"), ExtResource("6_741mp"), ExtResource("6_741mp"), ExtResource("8_o2vjy"), ExtResource("7_r2sq8"), ExtResource("6_741mp")])
+
+[node name="BattleManager" type="Node" parent="."]
+script = ExtResource("9_6abdu")
+
+[node name="EnemyManager" type="Node" parent="."]
+script = ExtResource("10_sh3ug")

@@ -40,7 +40,7 @@ func generate_nodes_and_paths():
 		for node_index in range(nodes_per_layer[layer_index]):
 			percent = randi_range(0,10)
 			
-			if percent >= 0 and percent < 3 and layer_index != 0 and layer_index != layers-1:
+			if percent >= 0 and percent < 4 and layer_index != 0 and layer_index != layers-1:
 				scene_instance = toSpawnShop.instantiate()
 			else:
 				scene_instance = toSpawnCombat.instantiate()
@@ -217,7 +217,11 @@ func restore_map(curr_node):
 	update_available_nodes(curr_node)
 
 func update_available_nodes(x):
-	available_nodes = avail_nodes_dict[x]
+	if x in avail_nodes_dict:
+		available_nodes = avail_nodes_dict[x]
+	# At End
+	else:
+		available_nodes = []
 	
 func generate_random_points(num_points: int) -> Array:
 	# Validate the input to ensure it doesn't exceed 5 points

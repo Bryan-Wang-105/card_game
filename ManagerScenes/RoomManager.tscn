@@ -146,12 +146,12 @@ size = Vector3(0.434998, 0.166504, 4.12646)
 [node name="Lighting" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5547, 0)
 light_color = Color(0.839216, 0.678431, 0.533333, 1)
-light_energy = 4.394
+light_energy = 1.749
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Lighting"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.33627)
 light_color = Color(0.839216, 0.678431, 0.533333, 1)
-light_energy = 1.473
+light_energy = 2.054
 
 [node name="Desk" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0451424, 0)
@@ -181,6 +181,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.372082, 0)
 
 [node name="ShopAtEvent" parent="." instance=ExtResource("3_m3wvo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.157631, 0.547479, 0.0631853)
+visible = false
 
 [node name="Map" parent="." instance=ExtResource("3_sjxh4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.497848, 0)

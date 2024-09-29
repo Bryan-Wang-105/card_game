@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b4sub8mkdap1v"]
+[gd_scene load_steps=41 format=3 uid="uid://b4sub8mkdap1v"]
 
 [ext_resource type="PackedScene" uid="uid://de5tugve56jad" path="res://3D_art/ShopEvent/ShopMesh.tscn" id="1_umpne"]
 
@@ -33,12 +33,6 @@ turbulence_enabled = true
 [sub_resource type="BoxMesh" id="BoxMesh_6alnj"]
 size = Vector3(0.1, 0.1, 0.1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_w14lf"]
-size = Vector3(0.6, 0.01, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qh135"]
-albedo_color = Color(0.184314, 0.262745, 1, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_auwcl"]
 size = Vector3(0.4, 0.2, 0.02)
 
@@ -58,7 +52,90 @@ size = Vector3(0.4, 0.3, 0.4)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qrx4k"]
 albedo_color = Color(0.105882, 0.105882, 0.105882, 1)
 
-[node name="TentMesh" type="MeshInstance3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_w14lf"]
+size = Vector3(0.6, 0.01, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qh135"]
+albedo_color = Color(0.184314, 0.262745, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yr4pk"]
+size = Vector3(0.06, 0.001, 0.04)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xo1m0"]
+albedo_color = Color(0.364706, 0.298039, 0.0745098, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_p2fsj"]
+top_radius = 0.01
+bottom_radius = 0.03
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mrx22"]
+albedo_color = Color(0.203922, 0, 0.168627, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_w1fg2"]
+radius = 0.015
+height = 0.03
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vi36j"]
+albedo_color = Color(0.592157, 0.360784, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4tgf"]
+size = Vector3(0.03, 0.005, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqpwf"]
+albedo_color = Color(0.337255, 0.337255, 0.337255, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_ycxij"]
+size = Vector3(0.03, 0.02, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nxodh"]
+size = Vector3(0.08, 0.01, 0.03)
+
+[sub_resource type="TorusMesh" id="TorusMesh_xu6fi"]
+inner_radius = 0.012
+outer_radius = 0.02
+rings = 5
+ring_segments = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dripd"]
+albedo_color = Color(0.780392, 0.411765, 0.639216, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cw2ky"]
+albedo_color = Color(0.478431, 0.156863, 0.0196078, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmk04"]
+albedo_color = Color(0.768627, 0.454902, 0.117647, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nluv"]
+albedo_color = Color(0.0627451, 0.454902, 0.117647, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53fjt"]
+albedo_color = Color(0, 0.654902, 0.980392, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r22n0"]
+albedo_color = Color(0.513726, 0.247059, 0.568627, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ykrj1"]
+size = Vector3(0.05, 1, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5klo"]
+albedo_color = Color(0.631373, 0.388235, 0.258824, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_r1nxm"]
+size = Vector3(0.2, 0.1, 0.01)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q6e2t"]
+size = Vector3(0.2, 0.5, 0.01)
+
+[sub_resource type="TextMesh" id="TextMesh_ensix"]
+text = "CONTINUE?"
+font_size = 8
+depth = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3e6ul"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="ShopAtEventMesh" type="MeshInstance3D"]
 
 [node name="TentMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.576004, 0, 0.817447, 0, 1, 0, -0.817447, 0, 0.576004, -0.717769, 0.252894, -0.511722)
@@ -88,35 +165,10 @@ draw_pass_1 = SubResource("BoxMesh_6alnj")
 [node name="LightmapGI" type="OmniLight3D" parent="FireMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141041, 0.318662, 0.0497265)
 light_color = Color(1, 0.478431, 0.0588235, 1)
-light_energy = 2.161
+light_energy = 0.742
 light_size = 0.113
 shadow_enabled = true
 omni_range = 1.67872
-
-[node name="TableMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.924513, 0, 0.381151, 0, 1, 0, -0.381151, 0, 0.924513, 0.657742, 0.0377312, -0.216621)
-mesh = SubResource("BoxMesh_w14lf")
-surface_material_override/0 = SubResource("StandardMaterial3D_qh135")
-
-[node name="ShopMesh" parent="TableMesh" instance=ExtResource("1_umpne")]
-transform = Transform3D(0.433061, 7.07117e-08, 0.901364, -1.50996e-07, -1, 1.50996e-07, 0.901364, -2.01492e-07, -0.433061, -0.216391, 0.0415414, -0.374945)
-skeleton = NodePath("../..")
-
-[node name="ShopMesh4" parent="TableMesh" instance=ExtResource("1_umpne")]
-transform = Transform3D(0.433061, 7.07117e-08, 0.901364, -1.50996e-07, -1, 1.50996e-07, 0.901364, -2.01492e-07, -0.433061, 0.181212, 0.127722, -0.348639)
-skeleton = NodePath("../..")
-
-[node name="ShopMesh2" parent="TableMesh/ShopMesh4" instance=ExtResource("1_umpne")]
-transform = Transform3D(1, 2.84217e-14, 0, 0, 1, 1.42109e-14, 0, -4.26326e-14, 1, -0.0373612, 0.0861802, -0.0181763)
-skeleton = NodePath("../../..")
-
-[node name="ShopMesh3" parent="TableMesh/ShopMesh4" instance=ExtResource("1_umpne")]
-transform = Transform3D(1, 4.26326e-14, 0, 0, 1, 1.42109e-14, 0, -4.26326e-14, 1, 0.0152754, 0.0861802, 0.0137218)
-skeleton = NodePath("../../..")
-
-[node name="ShopMesh5" parent="TableMesh" instance=ExtResource("1_umpne")]
-transform = Transform3D(0.433061, 7.07117e-08, 0.901364, -1.50996e-07, -1, 1.50996e-07, 0.901364, -2.01492e-07, -0.433061, 0.209622, 0.0401324, 0.455867)
-skeleton = NodePath("../..")
 
 [node name="SignMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.683741, 0.144231, -0.715329, 0.0342299, 0.972854, 0.228874, 0.728922, -0.180976, 0.660243, 0.921144, 0.144046, -0.31432)
@@ -128,7 +180,140 @@ surface_material_override/0 = SubResource("StandardMaterial3D_g8awp")
 mesh = SubResource("TextMesh_lrs4l")
 surface_material_override/0 = SubResource("StandardMaterial3D_iaxqr")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.667365, 0, -0.744731, 0, 1, 0, 0.744731, 0, 0.667365, 1.10093, 0.145857, -0.485943)
+[node name="Box" type="MeshInstance3D" parent="SignMesh"]
+transform = Transform3D(0.999155, 0.0342299, -0.0227464, -0.0385238, 0.972854, -0.228191, 0.014318, 0.228874, 0.973351, -0.00211203, 0.0587515, -0.241504)
 mesh = SubResource("BoxMesh_u47g8")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_qrx4k")
+
+[node name="TableMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.924513, 0, 0.381151, 0, 1, 0, -0.381151, 0, 0.924513, 0.657742, 0.0377312, -0.216621)
+mesh = SubResource("BoxMesh_w14lf")
+surface_material_override/0 = SubResource("StandardMaterial3D_qh135")
+
+[node name="DecorMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.328504, 0, 0.944503, 0, 1, 0, -0.944503, 0, 0.328504, 0.639278, 0.0493723, -0.111076)
+mesh = SubResource("BoxMesh_yr4pk")
+surface_material_override/0 = SubResource("StandardMaterial3D_xo1m0")
+
+[node name="Cards" type="MeshInstance3D" parent="DecorMesh"]
+transform = Transform3D(0.901998, 0, -0.431739, 0, 1, 0, 0.431739, 0, 0.901998, -0.0024077, -0.00321585, 0.0747434)
+mesh = SubResource("BoxMesh_yr4pk")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_xo1m0")
+
+[node name="DecorMesh3" type="MeshInstance3D" parent="DecorMesh/Cards"]
+transform = Transform3D(0.84501, 0, 0.53475, 0, 1, 0, -0.53475, 0, 0.84501, 0.00736862, 0, 0.0795012)
+mesh = SubResource("BoxMesh_yr4pk")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_xo1m0")
+
+[node name="DecorMesh4" type="MeshInstance3D" parent="DecorMesh/Cards"]
+transform = Transform3D(0.279477, 0, -0.960152, 0, 1, 0, 0.960152, 0, 0.279477, -0.0967196, 0, 0.0105752)
+mesh = SubResource("BoxMesh_yr4pk")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_xo1m0")
+
+[node name="Potion" type="MeshInstance3D" parent="DecorMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0642267, 0.0566052, -0.247409)
+mesh = SubResource("CylinderMesh_p2fsj")
+surface_material_override/0 = SubResource("StandardMaterial3D_mrx22")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DecorMesh/Potion"]
+transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 0, 0.0578489, 0)
+mesh = SubResource("SphereMesh_w1fg2")
+surface_material_override/0 = SubResource("StandardMaterial3D_vi36j")
+
+[node name="Sword" type="MeshInstance3D" parent="DecorMesh"]
+transform = Transform3D(-0.075333, -0.689934, -0.71994, -0.0866765, 0.723791, -0.684554, 0.993383, 0.0108321, -0.114326, 0.171109, 0.184988, 0.341829)
+mesh = SubResource("BoxMesh_g4tgf")
+surface_material_override/0 = SubResource("StandardMaterial3D_lqpwf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DecorMesh/Sword"]
+transform = Transform3D(0.999792, 0.0173301, 0.01083, -0.0113868, 0.0323804, 0.999415, 0.0169702, -0.999328, 0.0325714, -0.000255406, 0.00150891, -0.309297)
+mesh = SubResource("PrismMesh_ycxij")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="DecorMesh/Sword"]
+transform = Transform3D(1, 2.98023e-08, 0, 0, 1, -2.98023e-08, 2.98023e-08, -8.9407e-08, 1, -0.00156993, -0.000486821, 0.158961)
+mesh = SubResource("BoxMesh_nxodh")
+
+[node name="Chain" type="MeshInstance3D" parent="DecorMesh"]
+transform = Transform3D(0.995857, 0.0909203, 0.00144091, -0.0909204, 0.995356, 0.0316227, 0.00144091, -0.0316227, 0.999499, -0.169758, 0, 0.116816)
+mesh = SubResource("TorusMesh_xu6fi")
+surface_material_override/0 = SubResource("StandardMaterial3D_dripd")
+
+[node name="Chain2" type="MeshInstance3D" parent="DecorMesh/Chain"]
+transform = Transform3D(0.313243, -0.131755, -0.940489, -0.132666, 0.974547, -0.180713, 0.940361, 0.181378, 0.287791, 0.00419304, 3.72529e-09, 0.0120555)
+mesh = SubResource("TorusMesh_xu6fi")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_cw2ky")
+
+[node name="Chain3" type="MeshInstance3D" parent="DecorMesh/Chain"]
+transform = Transform3D(-0.17577, -0.198556, -0.9642, -0.178219, 0.969683, -0.167196, 0.968165, 0.14245, -0.205828, 0.00900999, 3.72529e-09, 0.025905)
+mesh = SubResource("TorusMesh_xu6fi")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_lmk04")
+
+[node name="Chain4" type="MeshInstance3D" parent="DecorMesh/Chain"]
+transform = Transform3D(-0.199829, -0.0155768, -0.979707, -0.0803317, 0.996768, 0.000537008, 0.976533, 0.0788088, -0.200434, -0.00604938, 3.72529e-09, -0.0173932)
+mesh = SubResource("TorusMesh_xu6fi")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_2nluv")
+
+[node name="Chain5" type="MeshInstance3D" parent="DecorMesh/Chain"]
+transform = Transform3D(-0.199829, -0.0155768, -0.979708, -0.0803317, 0.996768, 0.000536993, 0.976533, 0.0788088, -0.200434, -0.00272192, -0.00159377, 0.0423397)
+mesh = SubResource("TorusMesh_xu6fi")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_2nluv")
+
+[node name="Chain6" type="MeshInstance3D" parent="DecorMesh/Chain"]
+transform = Transform3D(-0.199829, -0.0155768, -0.979708, -0.0803317, 0.996768, 0.000536993, 0.976533, 0.0788088, -0.200434, -0.0195151, -0.00304237, 0.0396525)
+mesh = SubResource("TorusMesh_xu6fi")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_53fjt")
+
+[node name="Chain7" type="MeshInstance3D" parent="DecorMesh/Chain"]
+transform = Transform3D(-0.191546, -0.0961951, -0.976759, -0.123744, 0.989611, -0.0731941, 0.973652, 0.106848, -0.201459, -0.0333916, -0.00409454, 0.0328739)
+mesh = SubResource("TorusMesh_xu6fi")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_r22n0")
+
+[node name="CoinsMesh" parent="DecorMesh" instance=ExtResource("1_umpne")]
+transform = Transform3D(-0.386792, 1.97647e-07, 0.922167, -1.50996e-07, -1, 1.50996e-07, 0.922167, -8.08393e-08, 0.386792, 0.490846, 0.116081, -0.101461)
+skeleton = NodePath("../..")
+
+[node name="CoinsMesh2" parent="DecorMesh/CoinsMesh" instance=ExtResource("1_umpne")]
+transform = Transform3D(1, 2.84217e-14, 0, 0, 1, 1.42109e-14, 0, -4.26326e-14, 1, -0.0373612, 0.0861802, -0.0181763)
+skeleton = NodePath("../../..")
+
+[node name="CoinsMesh3" parent="DecorMesh/CoinsMesh" instance=ExtResource("1_umpne")]
+transform = Transform3D(1, 4.26326e-14, 0, 0, 1, 1.42109e-14, 0, -4.26326e-14, 1, 0.0152754, 0.0861802, 0.0137218)
+skeleton = NodePath("../../..")
+
+[node name="CoinsMesh4" parent="DecorMesh/CoinsMesh" instance=ExtResource("1_umpne")]
+transform = Transform3D(1, 1.42109e-14, 0, 0, 1, 1.42109e-14, 0, 0, 1, -0.195897, 0.0861802, -0.346993)
+skeleton = NodePath("../../..")
+
+[node name="CoinsMesh5" parent="DecorMesh/CoinsMesh" instance=ExtResource("1_umpne")]
+transform = Transform3D(1, 1.42109e-14, 0, 0, 1, 1.42109e-14, 0, 0, 1, 0.737457, 0.0875891, -0.322792)
+skeleton = NodePath("../../..")
+
+[node name="GoSign" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.675577, 0, -0.737289, 0, 1, 0, 0.737289, 0, 0.675577, 1.21236, 0.492425, -0.792515)
+mesh = SubResource("BoxMesh_ykrj1")
+surface_material_override/0 = SubResource("StandardMaterial3D_p5klo")
+
+[node name="Sign" type="MeshInstance3D" parent="GoSign"]
+transform = Transform3D(-0.00432983, -0.996203, 0.0869548, 0.99203, -0.0152291, -0.125074, 0.125924, 0.0857203, 0.988329, -0.244651, 0.308619, 0.0696222)
+mesh = SubResource("PrismMesh_r1nxm")
+surface_material_override/0 = SubResource("StandardMaterial3D_p5klo")
+
+[node name="Sign2" type="MeshInstance3D" parent="GoSign/Sign"]
+transform = Transform3D(0.999999, 9.31323e-08, 2.98023e-08, 1.15484e-07, 0.999999, 7.45058e-07, 3.72529e-09, 0, 1, -0.00149059, -0.297128, 5.6982e-05)
+mesh = SubResource("BoxMesh_q6e2t")
+surface_material_override/0 = SubResource("StandardMaterial3D_p5klo")
+
+[node name="TextMesh" type="MeshInstance3D" parent="GoSign"]
+transform = Transform3D(0.996239, 0, 0.0866515, 0, 1, 0, -0.0866515, 0, 0.996239, 0.0307966, 0.320663, 0.0589138)
+mesh = SubResource("TextMesh_ensix")
+surface_material_override/0 = SubResource("StandardMaterial3D_3e6ul")

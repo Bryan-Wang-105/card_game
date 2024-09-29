@@ -23,6 +23,8 @@ Features Ideas:
 Lore Ideas:
 	Morality system for finishing enemies
 	Chase your past run and if you hit that node, you can grab an item
+	3 Biomes -> Forest/Ocean/Mtn?
+		- Diff shops/combats/event art for each - Could affect gameplay too?
 
 EPIC LIST:
 	1) Make Menu
@@ -50,4 +52,4 @@ BUG SYSTEM:
 	5) Sometimes spawns 4 cards when it should only spawn 2?
 	
 FOR TOMORROW:
-	1) If there are 3 nodes in 1 layer, and 3 nodes in next layer, make more paths
+	1) 
