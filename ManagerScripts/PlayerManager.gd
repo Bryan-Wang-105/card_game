@@ -10,6 +10,7 @@ extends Node
 @export var actions_left_base = 6
 @export var health = 10
 @export var health_base = 10
+@export var money = 0
 @export var player_turn = true
 
 # Called when the node enters the scene tree for the first time.
@@ -72,6 +73,10 @@ func is_alive():
 func take_damage(x):
 	health -= x
 	gui.update_health()
+	
+func grab_loot(x):
+	money += x
+	gui.update_money()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

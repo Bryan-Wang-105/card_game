@@ -215,12 +215,35 @@ func _zoom_out() -> void:
 
 func _move_cam_up() -> void:
 	print("MOVE UP")
-	if cam_indx < len(pos) - 1:
+	if cam_indx < len(pos) - 1 and cam_indx >= 0:
 		animation_player.play(anim[cam_indx])
 		cam_indx += 1
+	elif cam_indx == -1:
+		animation_player.play_backwards("POV_0_shop")
+		cam_indx = 0
 
 func _move_cam_down() -> void:
 	print("MOVE DOWN")
 	if cam_indx > 0:
 		animation_player.play_backwards(anim[cam_indx-1])
 		cam_indx -= 1
+	elif cam_indx == -1:
+		animation_player.play_backwards("POV_0_shop")
+		cam_indx = 0
+
+func view_shop():
+	print("CAM INDEX")
+	print(cam_indx)
+	# Clicking Shop from 0-1-2 POV
+	if cam_indx >= 0:
+		if cam_indx == 0:
+			animation_player.play("POV_0_shop")
+		elif cam_indx == 1:
+			animation_player.play("POV_1_shop")
+		elif cam_indx == 2:
+			animation_player.play("POV_2_shop")
+		cam_indx = -1
+	else:
+		animation_player.play_backwards("POV_0_shop")
+		cam_indx = 0
+	

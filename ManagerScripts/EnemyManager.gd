@@ -8,6 +8,7 @@ var card_library = "res://cards/"
 var curr_enemy_deck = []
 var curr_enemy_health 
 var top_card_index
+var loot
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +20,13 @@ func spawn_enemy():
 	
 	# Create and attach enemy health
 	spawn_enemy_health()
+	
+	# Create enemy loot
+	spawn_enemy_loot()
+
+func spawn_enemy_loot():
+	if room_manager.level == 1:
+		loot = 10
 
 func spawn_enemy_deck():
 	var card_list = get_all_files_in_directory(card_library)

@@ -117,13 +117,10 @@ func win_battle():
 	print("1.5 seconds passed")
 	battlefield.clean_board()
 	player_manager.clean_GUI()
+	player_manager.grab_loot(enemy_manager.loot)
 	room_manager.cleanup_battlefield()
 	deck_manager.reset_deck()
 
 func reset_player_turn():
 	player_manager.your_turn_setup()
 	battlefield.toggle_end_turn()
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.

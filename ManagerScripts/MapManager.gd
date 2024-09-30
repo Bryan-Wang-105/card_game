@@ -40,7 +40,7 @@ func generate_nodes_and_paths():
 		for node_index in range(nodes_per_layer[layer_index]):
 			percent = randi_range(0,10)
 			
-			if percent >= 0 and percent < 4 and layer_index != 0 and layer_index != layers-1:
+			if percent >= 0 and percent < 6 and layer_index != 0 and layer_index != layers-1:
 				scene_instance = toSpawnShop.instantiate()
 			else:
 				scene_instance = toSpawnCombat.instantiate()

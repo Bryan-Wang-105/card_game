@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://mmwdjwskqve8"]
+[gd_scene load_steps=9 format=3 uid="uid://mmwdjwskqve8"]
 
 [ext_resource type="PackedScene" uid="uid://cfa1ni76ide4n" path="res://root.tscn" id="2_btqrk"]
 [ext_resource type="Script" path="res://ManagerScripts/CameraManager.gd" id="2_n4b7f"]
@@ -115,97 +115,10 @@ tracks/0/keys = {
 "values": [Vector3(0, -0.407228, -0.839414), Vector3(0, -0.902414, -0.851479)]
 }
 
-[sub_resource type="Animation" id="Animation_43pdk"]
-resource_name = "POV_0_shop"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/Camera3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-1.01604, 0, 0), Vector3(-1.23358, -1.07105, -0.120169)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/Camera3D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -0.000180006, -0.000286996), Vector3(0.35, -0.548, -1.019)]
-}
-
-[sub_resource type="Animation" id="Animation_f7kbk"]
-resource_name = "POV_1_shop"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -0.000180006, -0.000286996), Vector3(0.35, -0.548, -1.019)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/Camera3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.523599, 0, 0), Vector3(-1.23395, -1.07163, -0.120428)]
-}
-
-[sub_resource type="Animation" id="Animation_2r4dw"]
-resource_name = "POV_2_shop"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0.14, -0.87), Vector3(0.350386, -0.548239, -1.019)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/Camera3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-1.5708, 0, 0), Vector3(-1.23395, -1.07163, -0.120428)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rifd8"]
 _data = {
 "POV_0_1": SubResource("Animation_5jq8y"),
-"POV_0_shop": SubResource("Animation_43pdk"),
 "POV_1_2": SubResource("Animation_p227v"),
-"POV_1_shop": SubResource("Animation_f7kbk"),
-"POV_2_shop": SubResource("Animation_2r4dw"),
 "RESET": SubResource("Animation_6qxlf"),
 "hide_hand": SubResource("Animation_cw678")
 }
@@ -218,6 +131,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.569, 0.958)
 [node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 0.526736, 0.850029, 0, -0.850029, 0.526736, 0, -0.000180006, -0.000286996)
 script = ExtResource("2_n4b7f")
+look_sensitivity = null
+zoom_sensitivity = null
+min_fov = null
+max_fov = null
+invert_y = null
 
 [node name="Root" parent="Head/Camera3D" instance=ExtResource("2_btqrk")]
 transform = Transform3D(1, 0, 0, 0, 0.982706, -0.18517, 0, 0.18517, 0.982706, 0, -0.407228, -0.839414)
